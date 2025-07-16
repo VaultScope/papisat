@@ -1,0 +1,427 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- MODERN NAVIGATION BUTTON STYLE (INACTIVE) -->
+    <Style x:Key="ModernNavigationButtonStyle" TargetType="Button">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="{DynamicResource TextPrimaryBrush}"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Padding" Value="16"/>
+        <Setter Property="FontFamily" Value="{DynamicResource PrimaryFont}"/>
+        <Setter Property="FontSize" Value="{DynamicResource FontSizeM}"/>
+        <Setter Property="FontWeight" Value="Medium"/>
+        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Name="Border"
+                            Background="{TemplateBinding Background}"
+                            CornerRadius="{DynamicResource CornerRadiusM}"
+                            Padding="{TemplateBinding Padding}">
+                        <Border.RenderTransform>
+                            <ScaleTransform x:Name="ScaleTransform" ScaleX="1" ScaleY="1"/>
+                        </Border.RenderTransform>
+                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          RecognizesAccessKey="True"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Border" Property="Background">
+                                <Setter.Value>
+                                    <SolidColorBrush Color="{DynamicResource BackgroundElevated}" Opacity="0.8"/>
+                                </Setter.Value>
+                            </Setter>
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="ScaleTransform" 
+                                                         Storyboard.TargetProperty="ScaleX" 
+                                                         To="1.02" 
+                                                         Duration="{DynamicResource AnimationDurationFast}"/>
+                                        <DoubleAnimation Storyboard.TargetName="ScaleTransform" 
+                                                         Storyboard.TargetProperty="ScaleY" 
+                                                         To="1.02" 
+                                                         Duration="{DynamicResource AnimationDurationFast}"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="ScaleTransform" 
+                                                         Storyboard.TargetProperty="ScaleX" 
+                                                         To="1" 
+                                                         Duration="{DynamicResource AnimationDurationFast}"/>
+                                        <DoubleAnimation Storyboard.TargetName="ScaleTransform" 
+                                                         Storyboard.TargetProperty="ScaleY" 
+                                                         To="1" 
+                                                         Duration="{DynamicResource AnimationDurationFast}"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="Border" Property="Background">
+                                <Setter.Value>
+                                    <SolidColorBrush Color="{DynamicResource BackgroundSecondary}" Opacity="1"/>
+                                </Setter.Value>
+                            </Setter>
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="ScaleTransform" 
+                                                         Storyboard.TargetProperty="ScaleX" 
+                                                         To="0.98" 
+                                                         Duration="0:0:0.1"/>
+                                        <DoubleAnimation Storyboard.TargetName="ScaleTransform" 
+                                                         Storyboard.TargetProperty="ScaleY" 
+                                                         To="0.98" 
+                                                         Duration="0:0:0.1"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- MODERN NAVIGATION BUTTON STYLE (ACTIVE) -->
+    <Style x:Key="ModernNavigationButtonActiveStyle" TargetType="Button">
+        <Setter Property="Background" Value="{DynamicResource PurpleGradientBrush}"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Padding" Value="16"/>
+        <Setter Property="FontFamily" Value="{DynamicResource PrimaryFont}"/>
+        <Setter Property="FontSize" Value="{DynamicResource FontSizeM}"/>
+        <Setter Property="FontWeight" Value="Medium"/>
+        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Effect" Value="{DynamicResource ButtonShadow}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Name="Border"
+                            Background="{TemplateBinding Background}"
+                            CornerRadius="{DynamicResource CornerRadiusM}"
+                            Padding="{TemplateBinding Padding}">
+                        <Border.RenderTransform>
+                            <ScaleTransform x:Name="ScaleTransform" ScaleX="1" ScaleY="1"/>
+                        </Border.RenderTransform>
+                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          RecognizesAccessKey="True"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Border" Property="Background" Value="{DynamicResource PurpleGradientHoverBrush}"/>
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="ScaleTransform" 
+                                                         Storyboard.TargetProperty="ScaleX" 
+                                                         To="1.02" 
+                                                         Duration="{DynamicResource AnimationDurationFast}"/>
+                                        <DoubleAnimation Storyboard.TargetName="ScaleTransform" 
+                                                         Storyboard.TargetProperty="ScaleY" 
+                                                         To="1.02" 
+                                                         Duration="{DynamicResource AnimationDurationFast}"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="ScaleTransform" 
+                                                         Storyboard.TargetProperty="ScaleX" 
+                                                         To="1" 
+                                                         Duration="{DynamicResource AnimationDurationFast}"/>
+                                        <DoubleAnimation Storyboard.TargetName="ScaleTransform" 
+                                                         Storyboard.TargetProperty="ScaleY" 
+                                                         To="1" 
+                                                         Duration="{DynamicResource AnimationDurationFast}"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="Border" Property="Background" Value="{DynamicResource PurpleGradientPressedBrush}"/>
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="ScaleTransform" 
+                                                         Storyboard.TargetProperty="ScaleX" 
+                                                         To="0.98" 
+                                                         Duration="0:0:0.1"/>
+                                        <DoubleAnimation Storyboard.TargetName="ScaleTransform" 
+                                                         Storyboard.TargetProperty="ScaleY" 
+                                                         To="0.98" 
+                                                         Duration="0:0:0.1"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- MODERN QUICK ACTION BUTTON STYLE -->
+    <Style x:Key="ModernQuickActionButtonStyle" TargetType="Button">
+        <Setter Property="Background" Value="{DynamicResource BackgroundElevatedBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource TextPrimaryBrush}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource BorderLightBrush}"/>
+        <Setter Property="Padding" Value="12"/>
+        <Setter Property="FontFamily" Value="{DynamicResource PrimaryFont}"/>
+        <Setter Property="FontSize" Value="{DynamicResource FontSizeM}"/>
+        <Setter Property="FontWeight" Value="Medium"/>
+        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Name="Border"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="{DynamicResource CornerRadiusM}"
+                            Padding="{TemplateBinding Padding}">
+                        <Border.RenderTransform>
+                            <ScaleTransform x:Name="ScaleTransform" ScaleX="1" ScaleY="1"/>
+                        </Border.RenderTransform>
+                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          RecognizesAccessKey="True"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Border" Property="BorderBrush" Value="{DynamicResource PurplePrimaryBrush}"/>
+                            <Setter TargetName="Border" Property="Background" Value="{DynamicResource BackgroundSecondaryBrush}"/>
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="ScaleTransform" 
+                                                         Storyboard.TargetProperty="ScaleX" 
+                                                         To="1.02" 
+                                                         Duration="{DynamicResource AnimationDurationFast}"/>
+                                        <DoubleAnimation Storyboard.TargetName="ScaleTransform" 
+                                                         Storyboard.TargetProperty="ScaleY" 
+                                                         To="1.02" 
+                                                         Duration="{DynamicResource AnimationDurationFast}"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="ScaleTransform" 
+                                                         Storyboard.TargetProperty="ScaleX" 
+                                                         To="1" 
+                                                         Duration="{DynamicResource AnimationDurationFast}"/>
+                                        <DoubleAnimation Storyboard.TargetName="ScaleTransform" 
+                                                         Storyboard.TargetProperty="ScaleY" 
+                                                         To="1" 
+                                                         Duration="{DynamicResource AnimationDurationFast}"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="Border" Property="Background" Value="{DynamicResource BackgroundPrimaryBrush}"/>
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="ScaleTransform" 
+                                                         Storyboard.TargetProperty="ScaleX" 
+                                                         To="0.98" 
+                                                         Duration="0:0:0.1"/>
+                                        <DoubleAnimation Storyboard.TargetName="ScaleTransform" 
+                                                         Storyboard.TargetProperty="ScaleY" 
+                                                         To="0.98" 
+                                                         Duration="0:0:0.1"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- MODERN PRIMARY ACTION BUTTON STYLE -->
+    <Style x:Key="ModernPrimaryActionButtonStyle" TargetType="Button">
+        <Setter Property="Background" Value="{DynamicResource PurpleGradientBrush}"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Padding" Value="20,14"/>
+        <Setter Property="FontFamily" Value="{DynamicResource PrimaryFont}"/>
+        <Setter Property="FontSize" Value="{DynamicResource FontSizeM}"/>
+        <Setter Property="FontWeight" Value="Medium"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Effect" Value="{DynamicResource ButtonShadow}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Name="Border"
+                            Background="{TemplateBinding Background}"
+                            CornerRadius="{DynamicResource CornerRadiusM}"
+                            Padding="{TemplateBinding Padding}">
+                        <Border.RenderTransform>
+                            <ScaleTransform x:Name="ScaleTransform" ScaleX="1" ScaleY="1"/>
+                        </Border.RenderTransform>
+                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          RecognizesAccessKey="True"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Border" Property="Background" Value="{DynamicResource PurpleGradientHoverBrush}"/>
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="ScaleTransform" 
+                                                         Storyboard.TargetProperty="ScaleX" 
+                                                         To="1.05" 
+                                                         Duration="{DynamicResource AnimationDurationFast}"/>
+                                        <DoubleAnimation Storyboard.TargetName="ScaleTransform" 
+                                                         Storyboard.TargetProperty="ScaleY" 
+                                                         To="1.05" 
+                                                         Duration="{DynamicResource AnimationDurationFast}"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="ScaleTransform" 
+                                                         Storyboard.TargetProperty="ScaleX" 
+                                                         To="1" 
+                                                         Duration="{DynamicResource AnimationDurationFast}"/>
+                                        <DoubleAnimation Storyboard.TargetName="ScaleTransform" 
+                                                         Storyboard.TargetProperty="ScaleY" 
+                                                         To="1" 
+                                                         Duration="{DynamicResource AnimationDurationFast}"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="Border" Property="Background" Value="{DynamicResource PurpleGradientPressedBrush}"/>
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="ScaleTransform" 
+                                                         Storyboard.TargetProperty="ScaleX" 
+                                                         To="0.98" 
+                                                         Duration="0:0:0.1"/>
+                                        <DoubleAnimation Storyboard.TargetName="ScaleTransform" 
+                                                         Storyboard.TargetProperty="ScaleY" 
+                                                         To="0.98" 
+                                                         Duration="0:0:0.1"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- MODERN SECONDARY ACTION BUTTON STYLE -->
+    <Style x:Key="ModernSecondaryActionButtonStyle" TargetType="Button">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="{DynamicResource TextPrimaryBrush}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource BorderMediumBrush}"/>
+        <Setter Property="Padding" Value="20,14"/>
+        <Setter Property="FontFamily" Value="{DynamicResource PrimaryFont}"/>
+        <Setter Property="FontSize" Value="{DynamicResource FontSizeM}"/>
+        <Setter Property="FontWeight" Value="Medium"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Name="Border"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="{DynamicResource CornerRadiusM}"
+                            Padding="{TemplateBinding Padding}">
+                        <Border.RenderTransform>
+                            <ScaleTransform x:Name="ScaleTransform" ScaleX="1" ScaleY="1"/>
+                        </Border.RenderTransform>
+                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          RecognizesAccessKey="True"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Border" Property="BorderBrush" Value="{DynamicResource PurplePrimaryBrush}"/>
+                            <Setter TargetName="Border" Property="Background" Value="{DynamicResource BackgroundSecondaryBrush}"/>
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="ScaleTransform" 
+                                                         Storyboard.TargetProperty="ScaleX" 
+                                                         To="1.02" 
+                                                         Duration="{DynamicResource AnimationDurationFast}"/>
+                                        <DoubleAnimation Storyboard.TargetName="ScaleTransform" 
+                                                         Storyboard.TargetProperty="ScaleY" 
+                                                         To="1.02" 
+                                                         Duration="{DynamicResource AnimationDurationFast}"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="ScaleTransform" 
+                                                         Storyboard.TargetProperty="ScaleX" 
+                                                         To="1" 
+                                                         Duration="{DynamicResource AnimationDurationFast}"/>
+                                        <DoubleAnimation Storyboard.TargetName="ScaleTransform" 
+                                                         Storyboard.TargetProperty="ScaleY" 
+                                                         To="1" 
+                                                         Duration="{DynamicResource AnimationDurationFast}"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="Border" Property="Background" Value="{DynamicResource BackgroundPrimaryBrush}"/>
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="ScaleTransform" 
+                                                         Storyboard.TargetProperty="ScaleX" 
+                                                         To="0.98" 
+                                                         Duration="0:0:0.1"/>
+                                        <DoubleAnimation Storyboard.TargetName="ScaleTransform" 
+                                                         Storyboard.TargetProperty="ScaleY" 
+                                                         To="0.98" 
+                                                         Duration="0:0:0.1"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

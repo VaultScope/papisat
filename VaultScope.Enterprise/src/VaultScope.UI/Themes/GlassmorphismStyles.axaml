@@ -1,0 +1,212 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  
+  <!-- Glass Panel Style -->
+  <Style Selector="Panel.GlassPanel">
+    <Setter Property="Background" Value="{StaticResource GlassBrush}" />
+    <Setter Property="Effect">
+      <Setter.Value>
+        <BlurEffect Radius="8" />
+      </Setter.Value>
+    </Setter>
+  </Style>
+  
+  <!-- Glass Border Style -->
+  <Style Selector="Border.GlassBorder">
+    <Setter Property="Background">
+      <Setter.Value>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+          <GradientStop Color="#22FFFFFF" Offset="0" />
+          <GradientStop Color="#11FFFFFF" Offset="1" />
+        </LinearGradientBrush>
+      </Setter.Value>
+    </Setter>
+    <Setter Property="BorderBrush" Value="{StaticResource GlassBorderBrush}" />
+    <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="CornerRadius" Value="{StaticResource MediumCornerRadius}" />
+    <Setter Property="Effect">
+      <Setter.Value>
+        <DropShadowEffect Color="#000000" Opacity="0.3" BlurRadius="20" OffsetX="0" OffsetY="4" />
+      </Setter.Value>
+    </Setter>
+  </Style>
+  
+  <!-- Glass Card Style -->
+  <Style Selector="Border.GlassCard">
+    <Setter Property="Background">
+      <Setter.Value>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+          <GradientStop Color="#D41A1A1A" Offset="0" />
+          <GradientStop Color="#CC111111" Offset="1" />
+        </LinearGradientBrush>
+      </Setter.Value>
+    </Setter>
+    <Setter Property="BorderBrush" Value="{StaticResource GlassBorderBrush}" />
+    <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="CornerRadius" Value="{StaticResource LargeCornerRadius}" />
+    <Setter Property="Padding" Value="{StaticResource MediumSpacing}" />
+    <Setter Property="Effect">
+      <Setter.Value>
+        <DropShadowEffect Color="#000000" Opacity="0.2" BlurRadius="15" OffsetX="0" OffsetY="2" />
+      </Setter.Value>
+    </Setter>
+    <Setter Property="Transitions">
+      <Setter.Value>
+        <Transitions>
+          <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2" />
+          <DoubleTransition Property="Opacity" Duration="0:0:0.2" />
+        </Transitions>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  
+  <!-- Glass Card Hover Style -->
+  <Style Selector="Border.GlassCardHover">
+    <Setter Property="Background">
+      <Setter.Value>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+          <GradientStop Color="#D41A1A1A" Offset="0" />
+          <GradientStop Color="#CC111111" Offset="1" />
+        </LinearGradientBrush>
+      </Setter.Value>
+    </Setter>
+    <Setter Property="BorderBrush" Value="{StaticResource GlassBorderBrush}" />
+    <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="CornerRadius" Value="{StaticResource LargeCornerRadius}" />
+    <Setter Property="Padding" Value="{StaticResource MediumSpacing}" />
+    <Setter Property="Effect">
+      <Setter.Value>
+        <DropShadowEffect Color="#000000" Opacity="0.2" BlurRadius="15" OffsetX="0" OffsetY="2" />
+      </Setter.Value>
+    </Setter>
+    <Setter Property="Transitions">
+      <Setter.Value>
+        <Transitions>
+          <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2" />
+          <DoubleTransition Property="Opacity" Duration="0:0:0.2" />
+        </Transitions>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  
+  <!-- Glass Navigation Panel -->
+  <Style Selector="Border.GlassNavigationPanel">
+    <Setter Property="Background">
+      <Setter.Value>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+          <GradientStop Color="#E6111111" Offset="0" />
+          <GradientStop Color="#D4000000" Offset="1" />
+        </LinearGradientBrush>
+      </Setter.Value>
+    </Setter>
+    <Setter Property="BorderBrush" Value="{StaticResource GlassBorderBrush}" />
+    <Setter Property="BorderThickness" Value="0,0,1,0" />
+    <Setter Property="Effect">
+      <Setter.Value>
+        <BlurEffect Radius="10" />
+      </Setter.Value>
+    </Setter>
+  </Style>
+  
+  <!-- Glass Button Style -->
+  <Style Selector="Button.GlassButton">
+    <Setter Property="Background">
+      <Setter.Value>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+          <GradientStop Color="#D41A1A1A" Offset="0" />
+          <GradientStop Color="#CC111111" Offset="1" />
+        </LinearGradientBrush>
+      </Setter.Value>
+    </Setter>
+    <Setter Property="BorderBrush" Value="{StaticResource GlassBorderBrush}" />
+    <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="CornerRadius" Value="{StaticResource MediumCornerRadius}" />
+    <Setter Property="Padding" Value="12,8" />
+    <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}" />
+    <Setter Property="FontWeight" Value="Medium" />
+    <Setter Property="Effect">
+      <Setter.Value>
+        <DropShadowEffect Color="#000000" Opacity="0.2" BlurRadius="10" OffsetX="0" OffsetY="2" />
+      </Setter.Value>
+    </Setter>
+    <Setter Property="Transitions">
+      <Setter.Value>
+        <Transitions>
+          <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.15" />
+          <DoubleTransition Property="Opacity" Duration="0:0:0.15" />
+        </Transitions>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  
+  <!-- Primary Glass Button -->
+  <Style Selector="Button.PrimaryGlassButton">
+    <Setter Property="Background" Value="{StaticResource PrimaryGradientBrush}" />
+    <Setter Property="BorderBrush" Value="{StaticResource PrimaryBrush}" />
+    <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="CornerRadius" Value="{StaticResource MediumCornerRadius}" />
+    <Setter Property="Padding" Value="12,8" />
+    <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}" />
+    <Setter Property="FontWeight" Value="Medium" />
+    <Setter Property="Effect">
+      <Setter.Value>
+        <DropShadowEffect Color="#000000" Opacity="0.2" BlurRadius="10" OffsetX="0" OffsetY="2" />
+      </Setter.Value>
+    </Setter>
+    <Setter Property="Transitions">
+      <Setter.Value>
+        <Transitions>
+          <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.15" />
+          <DoubleTransition Property="Opacity" Duration="0:0:0.15" />
+        </Transitions>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  
+  <!-- Glass TextBox Style -->
+  <Style Selector="TextBox.GlassTextBox">
+    <Setter Property="Background">
+      <Setter.Value>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+          <GradientStop Color="#22FFFFFF" Offset="0" />
+          <GradientStop Color="#11FFFFFF" Offset="1" />
+        </LinearGradientBrush>
+      </Setter.Value>
+    </Setter>
+    <Setter Property="BorderBrush" Value="{StaticResource GlassBorderBrush}" />
+    <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="CornerRadius" Value="{StaticResource MediumCornerRadius}" />
+    <Setter Property="Padding" Value="12,8" />
+    <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}" />
+    <Setter Property="CaretBrush" Value="{StaticResource PrimaryBrush}" />
+    <Setter Property="SelectionBrush" Value="{StaticResource PrimaryBrush}" />
+    <Setter Property="Effect">
+      <Setter.Value>
+        <DropShadowEffect Color="#000000" Opacity="0.1" BlurRadius="5" OffsetX="0" OffsetY="1" />
+      </Setter.Value>
+    </Setter>
+  </Style>
+  
+  <!-- Glass Progress Bar -->
+  <Style Selector="ProgressBar.GlassProgressBar">
+    <Setter Property="Background">
+      <Setter.Value>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+          <GradientStop Color="#22FFFFFF" Offset="0" />
+          <GradientStop Color="#11FFFFFF" Offset="1" />
+        </LinearGradientBrush>
+      </Setter.Value>
+    </Setter>
+    <Setter Property="Foreground" Value="{StaticResource PrimaryGradientBrush}" />
+    <Setter Property="BorderBrush" Value="{StaticResource GlassBorderBrush}" />
+    <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="CornerRadius" Value="{StaticResource SmallCornerRadius}" />
+    <Setter Property="Height" Value="8" />
+    <Setter Property="Effect">
+      <Setter.Value>
+        <DropShadowEffect Color="#000000" Opacity="0.1" BlurRadius="5" OffsetX="0" OffsetY="1" />
+      </Setter.Value>
+    </Setter>
+  </Style>
+  
+</Styles>

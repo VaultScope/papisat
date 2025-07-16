@@ -1,0 +1,369 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:VaultScope.UI.ViewModels"
+             x:Class="VaultScope.UI.Views.SettingsView"
+             x:DataType="vm:SettingsViewModel">
+
+  <ScrollViewer>
+    <StackPanel Classes="ContentContainer">
+      
+      <!-- Header -->
+      <Border Classes="GlassCard" Margin="0,0,0,24">
+        <StackPanel>
+          <TextBlock Text="Settings and Preferences" 
+                     Classes="HeadingLarge" 
+                     Margin="0,0,0,8" />
+          <TextBlock Text="Configure application settings, scan defaults, and system preferences"
+                     Classes="BodyLarge"
+                     Foreground="{StaticResource TextSecondaryBrush}" />
+        </StackPanel>
+      </Border>
+
+      <!-- Settings Grid -->
+      <Grid ColumnDefinitions="*,*">
+        
+        <!-- Left Column -->
+        <StackPanel Grid.Column="0" Spacing="24">
+          
+          <!-- Default Scan Settings -->
+          <Border Classes="GlassCard">
+            <StackPanel Classes="SectionContainer">
+              <TextBlock Text="Default Scan Settings" 
+                         Classes="HeadingSmall" 
+                         Margin="0,0,0,16" />
+              
+              <!-- Default Target URL -->
+              <Grid Classes="FormGrid">
+                <Grid.RowDefinitions>
+                  <RowDefinition Height="Auto"/>
+                  <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Text="Default Target URL" Classes="FormLabel" />
+                <TextBox Grid.Row="1" 
+                         Text="{Binding DefaultTargetUrl}" 
+                         Classes="FormInput" 
+                         Watermark="http://localhost:3000" />
+              </Grid>
+
+              <!-- Default Scan Depth -->
+              <Grid Classes="FormGrid">
+                <Grid.RowDefinitions>
+                  <RowDefinition Height="Auto"/>
+                  <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Text="Default Scan Depth" Classes="FormLabel" />
+                <ComboBox Grid.Row="1" 
+                          SelectedItem="{Binding DefaultScanDepth}" 
+                          Classes="GlassTextBox">
+                  <ComboBoxItem Content="Quick" />
+                  <ComboBoxItem Content="Normal" />
+                  <ComboBoxItem Content="Deep" />
+                  <ComboBoxItem Content="Comprehensive" />
+                </ComboBox>
+              </Grid>
+
+              <!-- Performance Defaults -->
+              <Grid ColumnDefinitions="*,*">
+                <Grid Grid.Column="0" Classes="FormGrid">
+                  <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                  </Grid.RowDefinitions>
+                  <TextBlock Grid.Row="0" Text="Requests/Second" Classes="FormLabel" />
+                  <NumericUpDown Grid.Row="1" 
+                                 Value="{Binding DefaultMaxRequestsPerSecond}" 
+                                 Minimum="1" 
+                                 Maximum="100" 
+                                 Classes="GlassTextBox" />
+                </Grid>
+
+                <Grid Grid.Column="1" Classes="FormGrid">
+                  <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                  </Grid.RowDefinitions>
+                  <TextBlock Grid.Row="0" Text="Concurrent Requests" Classes="FormLabel" />
+                  <NumericUpDown Grid.Row="1" 
+                                 Value="{Binding DefaultMaxConcurrentRequests}" 
+                                 Minimum="1" 
+                                 Maximum="50" 
+                                 Classes="GlassTextBox" />
+                </Grid>
+              </Grid>
+
+              <!-- Default Options -->
+              <StackPanel Spacing="12" Margin="0,16,0,0">
+                <CheckBox Content="Follow Redirects" 
+                          IsChecked="{Binding DefaultFollowRedirects}" 
+                          Foreground="{StaticResource TextPrimaryBrush}" />
+                <CheckBox Content="Test All HTTP Methods" 
+                          IsChecked="{Binding DefaultTestAllHttpMethods}" 
+                          Foreground="{StaticResource TextPrimaryBrush}" />
+                <CheckBox Content="Generate Report" 
+                          IsChecked="{Binding DefaultGenerateReport}" 
+                          Foreground="{StaticResource TextPrimaryBrush}" />
+              </StackPanel>
+              
+            </StackPanel>
+          </Border>
+
+          <!-- Default Vulnerability Types -->
+          <Border Classes="GlassCard">
+            <StackPanel Classes="SectionContainer">
+              <TextBlock Text="Default Vulnerability Types" 
+                         Classes="HeadingSmall" 
+                         Margin="0,0,0,16" />
+              
+              <!-- Quick Selection -->
+              <Grid ColumnDefinitions="*,*" Margin="0,0,0,16">
+                <Button Grid.Column="0" 
+                        Content="Select All" 
+                        Classes="GlassButton" />
+                <Button Grid.Column="1" 
+                        Content="Select None" 
+                        Classes="GlassButton" />
+              </Grid>
+
+              <!-- Vulnerability Types List -->
+              <ScrollViewer MaxHeight="200" 
+                            VerticalScrollBarVisibility="Auto"
+                            HorizontalScrollBarVisibility="Disabled">
+                <ItemsControl ItemsSource="{Binding DefaultVulnerabilityTypes}">
+                  <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                      <CheckBox Content="{Binding DisplayName}" 
+                                IsChecked="{Binding IsSelected}" 
+                                Foreground="{StaticResource TextPrimaryBrush}" 
+                                Margin="0,4" />
+                    </DataTemplate>
+                  </ItemsControl.ItemTemplate>
+                </ItemsControl>
+              </ScrollViewer>
+              
+            </StackPanel>
+          </Border>
+
+          <!-- Report Settings -->
+          <Border Classes="GlassCard">
+            <StackPanel Classes="SectionContainer">
+              <TextBlock Text="Report Settings" 
+                         Classes="HeadingSmall" 
+                         Margin="0,0,0,16" />
+              
+              <!-- Report Location -->
+              <Grid Classes="FormGrid">
+                <Grid.RowDefinitions>
+                  <RowDefinition Height="Auto"/>
+                  <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Text="Default Report Location" Classes="FormLabel" />
+                <Grid Grid.Row="1" ColumnDefinitions="*,Auto">
+                  <TextBox Grid.Column="0" 
+                           Text="{Binding DefaultReportLocation}" 
+                           Classes="FormInput" 
+                           Margin="0,0,8,0" />
+                  <Button Grid.Column="1" 
+                          Content="Browse" 
+                          Classes="GlassButton" 
+                          Command="{Binding BrowseReportLocationCommand}" />
+                </Grid>
+              </Grid>
+
+              <!-- Report Formats -->
+              <StackPanel Margin="0,16,0,0">
+                <TextBlock Text="Default Report Formats" 
+                           Classes="FormLabel" 
+                           Margin="0,0,0,8" />
+                <ItemsControl ItemsSource="{Binding DefaultReportFormats}">
+                  <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                      <CheckBox Content="{Binding DisplayName}" 
+                                IsChecked="{Binding IsSelected}" 
+                                Foreground="{StaticResource TextPrimaryBrush}" 
+                                Margin="0,4" />
+                    </DataTemplate>
+                  </ItemsControl.ItemTemplate>
+                </ItemsControl>
+              </StackPanel>
+
+              <!-- Report Options -->
+              <StackPanel Spacing="12" Margin="0,16,0,0">
+                <CheckBox Content="Save Reports Automatically" 
+                          IsChecked="{Binding SaveReportsAutomatically}" 
+                          Foreground="{StaticResource TextPrimaryBrush}" />
+              </StackPanel>
+              
+            </StackPanel>
+          </Border>
+
+        </StackPanel>
+
+        <!-- Right Column -->
+        <StackPanel Grid.Column="1" Spacing="24">
+          
+          <!-- Application Preferences -->
+          <Border Classes="GlassCard">
+            <StackPanel Classes="SectionContainer">
+              <TextBlock Text="Application Preferences" 
+                         Classes="HeadingSmall" 
+                         Margin="0,0,0,16" />
+              
+              <!-- Notification Settings -->
+              <StackPanel Spacing="12" Margin="0,0,0,16">
+                <CheckBox Content="Enable Notifications" 
+                          IsChecked="{Binding EnableNotifications}" 
+                          Foreground="{StaticResource TextPrimaryBrush}" />
+                <CheckBox Content="Enable Sound Notifications" 
+                          IsChecked="{Binding EnableSounds}" 
+                          Foreground="{StaticResource TextPrimaryBrush}" />
+                <CheckBox Content="Auto-start Configured Scans" 
+                          IsChecked="{Binding AutoStartScans}" 
+                          Foreground="{StaticResource TextPrimaryBrush}" />
+              </StackPanel>
+              
+            </StackPanel>
+          </Border>
+
+          <!-- Data Management -->
+          <Border Classes="GlassCard">
+            <StackPanel Classes="SectionContainer">
+              <TextBlock Text="Data Management" 
+                         Classes="HeadingSmall" 
+                         Margin="0,0,0,16" />
+              
+              <!-- Database Location -->
+              <Grid Classes="FormGrid">
+                <Grid.RowDefinitions>
+                  <RowDefinition Height="Auto"/>
+                  <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Text="Database Location" Classes="FormLabel" />
+                <Grid Grid.Row="1" ColumnDefinitions="*,Auto">
+                  <TextBox Grid.Column="0" 
+                           Text="{Binding DatabaseLocation}" 
+                           Classes="FormInput" 
+                           Margin="0,0,8,0" />
+                  <Button Grid.Column="1" 
+                          Content="Browse" 
+                          Classes="GlassButton" 
+                          Command="{Binding BrowseDatabaseLocationCommand}" />
+                </Grid>
+              </Grid>
+
+              <!-- Data Retention -->
+              <Grid ColumnDefinitions="*,*">
+                <Grid Grid.Column="0" Classes="FormGrid">
+                  <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                  </Grid.RowDefinitions>
+                  <TextBlock Grid.Row="0" Text="Max Recent Scans" Classes="FormLabel" />
+                  <NumericUpDown Grid.Row="1" 
+                                 Value="{Binding MaxRecentScans}" 
+                                 Minimum="10" 
+                                 Maximum="1000" 
+                                 Classes="GlassTextBox" />
+                </Grid>
+
+                <Grid Grid.Column="1" Classes="FormGrid">
+                  <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                  </Grid.RowDefinitions>
+                  <TextBlock Grid.Row="0" Text="History Retention (Days)" Classes="FormLabel" />
+                  <NumericUpDown Grid.Row="1" 
+                                 Value="{Binding ScanHistoryRetentionDays}" 
+                                 Minimum="1" 
+                                 Maximum="365" 
+                                 Classes="GlassTextBox" />
+                </Grid>
+              </Grid>
+
+              <!-- Data Actions -->
+              <Button Content="Clear Scan History" 
+                      Classes="GlassButton" 
+                      Background="{StaticResource ErrorBrush}" 
+                      Command="{Binding ClearScanHistoryCommand}" 
+                      Margin="0,16,0,0" />
+              
+            </StackPanel>
+          </Border>
+
+          <!-- Logging & Diagnostics -->
+          <Border Classes="GlassCard">
+            <StackPanel Classes="SectionContainer">
+              <TextBlock Text="Logging and Diagnostics" 
+                         Classes="HeadingSmall" 
+                         Margin="0,0,0,16" />
+              
+              <!-- Logging Settings -->
+              <CheckBox Content="Enable Application Logging" 
+                        IsChecked="{Binding EnableLogging}" 
+                        Foreground="{StaticResource TextPrimaryBrush}" 
+                        Margin="0,0,0,12" />
+
+              <Grid Classes="FormGrid">
+                <Grid.RowDefinitions>
+                  <RowDefinition Height="Auto"/>
+                  <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Text="Log Level" Classes="FormLabel" />
+                <ComboBox Grid.Row="1" 
+                          SelectedItem="{Binding LogLevel}" 
+                          Classes="GlassTextBox">
+                  <ComboBoxItem Content="Debug" />
+                  <ComboBoxItem Content="Information" />
+                  <ComboBoxItem Content="Warning" />
+                  <ComboBoxItem Content="Error" />
+                </ComboBox>
+              </Grid>
+
+              <!-- Telemetry -->
+              <CheckBox Content="Enable Anonymous Telemetry" 
+                        IsChecked="{Binding EnableTelemetry}" 
+                        Foreground="{StaticResource TextPrimaryBrush}" 
+                        Margin="0,16,0,0" />
+              
+            </StackPanel>
+          </Border>
+
+          <!-- Configuration Management -->
+          <Border Classes="GlassCard">
+            <StackPanel Classes="SectionContainer">
+              <TextBlock Text="Configuration Management" 
+                         Classes="HeadingSmall" 
+                         Margin="0,0,0,16" />
+              
+              <!-- Action Buttons -->
+              <Grid ColumnDefinitions="*,*" Margin="0,0,0,8">
+                <Button Grid.Column="0" 
+                        Content="Export Settings" 
+                        Classes="GlassButton" 
+                        Command="{Binding ExportSettingsCommand}" />
+                <Button Grid.Column="1" 
+                        Content="Import Settings" 
+                        Classes="GlassButton" 
+                        Command="{Binding ImportSettingsCommand}" />
+              </Grid>
+
+              <Button Content="Reset to Defaults" 
+                      Classes="GlassButton" 
+                      Background="{StaticResource WarningBrush}" 
+                      Command="{Binding ResetToDefaultsCommand}" 
+                      Margin="0,0,0,8" />
+
+              <Button Content="Save Settings" 
+                      Classes="PrimaryGlassButton" 
+                      Command="{Binding SaveSettingsCommand}" />
+              
+            </StackPanel>
+          </Border>
+
+        </StackPanel>
+
+      </Grid>
+
+    </StackPanel>
+  </ScrollViewer>
+
+</UserControl>

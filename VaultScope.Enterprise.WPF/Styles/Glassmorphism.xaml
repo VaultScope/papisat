@@ -1,0 +1,315 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- GLASSMORPHISM EFFECTS SYSTEM -->
+
+    <!-- PRIMARY GLASS CARD STYLE -->
+    <Style x:Key="GlassCardStyle" TargetType="Border">
+        <Setter Property="Background" Value="{DynamicResource GlassPrimaryBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource GlassBorderBrush}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="CornerRadius" Value="{DynamicResource CornerRadiusL}"/>
+        <Setter Property="Padding" Value="{DynamicResource SpacingL}"/>
+        <Setter Property="Margin" Value="{DynamicResource SpacingM}"/>
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect Color="Black" 
+                                  Direction="270" 
+                                  ShadowDepth="8" 
+                                  BlurRadius="32" 
+                                  Opacity="0.3"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- SECONDARY GLASS STYLE (More transparent) -->
+    <Style x:Key="GlassSecondaryStyle" TargetType="Border" BasedOn="{StaticResource GlassCardStyle}">
+        <Setter Property="Background" Value="{DynamicResource GlassSecondaryBrush}"/>
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect Color="Black" 
+                                  Direction="270" 
+                                  ShadowDepth="4" 
+                                  BlurRadius="20" 
+                                  Opacity="0.2"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- ACCENT GLASS STYLE (Purple tinted) -->
+    <Style x:Key="GlassAccentStyle" TargetType="Border" BasedOn="{StaticResource GlassCardStyle}">
+        <Setter Property="Background" Value="{DynamicResource GlassAccentBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource PurplePrimaryBrush}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+    </Style>
+
+    <!-- GLASS BUTTON STYLE -->
+    <Style x:Key="GlassButtonStyle" TargetType="Button">
+        <Setter Property="Background" Value="{DynamicResource GlassPrimaryBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource GlassBorderBrush}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Foreground" Value="{DynamicResource TextPrimaryBrush}"/>
+        <Setter Property="FontFamily" Value="{DynamicResource PrimaryFont}"/>
+        <Setter Property="FontSize" Value="{DynamicResource FontSizeM}"/>
+        <Setter Property="FontWeight" Value="Medium"/>
+        <Setter Property="Padding" Value="20,12"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid>
+                        <Border Name="GlassBackground"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="{DynamicResource CornerRadiusM}">
+                            <Border.Effect>
+                                <DropShadowEffect Color="Black" 
+                                                  Direction="270" 
+                                                  ShadowDepth="4" 
+                                                  BlurRadius="16" 
+                                                  Opacity="0.2"/>
+                            </Border.Effect>
+                        </Border>
+                        
+                        <!-- Glass highlight -->
+                        <Border Name="GlassHighlight"
+                                BorderBrush="{DynamicResource GlassHighlightBrush}"
+                                BorderThickness="1,1,1,0"
+                                CornerRadius="{DynamicResource CornerRadiusM}"
+                                IsHitTestVisible="False"/>
+                        
+                        <!-- Content -->
+                        <ContentPresenter Margin="{TemplateBinding Padding}"
+                                          HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="GlassBackground" Property="Background">
+                                <Setter.Value>
+                                    <SolidColorBrush Color="#CC383838"/>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="GlassHighlight" Property="BorderBrush" Value="{DynamicResource PurplePrimaryBrush}"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="GlassBackground" Property="Background">
+                                <Setter.Value>
+                                    <SolidColorBrush Color="#B2444444"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- GLASS PRIMARY BUTTON STYLE -->
+    <Style x:Key="GlassPrimaryButtonStyle" TargetType="Button" BasedOn="{StaticResource GlassButtonStyle}">
+        <Setter Property="Background" Value="{DynamicResource GlassAccentBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource PurplePrimaryBrush}"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid>
+                        <Border Name="GlassBackground"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="{DynamicResource CornerRadiusM}">
+                            <Border.Effect>
+                                <DropShadowEffect Color="{DynamicResource PurplePrimary}" 
+                                                  Direction="270" 
+                                                  ShadowDepth="4" 
+                                                  BlurRadius="20" 
+                                                  Opacity="0.4"/>
+                            </Border.Effect>
+                        </Border>
+                        
+                        <!-- Purple glow highlight -->
+                        <Border Name="GlassHighlight"
+                                BorderBrush="{DynamicResource PurpleAccentBrush}"
+                                BorderThickness="1,1,1,0"
+                                CornerRadius="{DynamicResource CornerRadiusM}"
+                                IsHitTestVisible="False"/>
+                        
+                        <!-- Content -->
+                        <ContentPresenter Margin="{TemplateBinding Padding}"
+                                          HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="GlassBackground" Property="Background">
+                                <Setter.Value>
+                                    <SolidColorBrush Color="#66A855F7"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="GlassBackground" Property="Background">
+                                <Setter.Value>
+                                    <SolidColorBrush Color="#997C3AED"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- GLASS MODAL OVERLAY STYLE -->
+    <Style x:Key="GlassModalOverlayStyle" TargetType="Border">
+        <Setter Property="Background">
+            <Setter.Value>
+                <SolidColorBrush Color="#E5323232"/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="BorderBrush" Value="{DynamicResource GlassBorderBrush}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="CornerRadius" Value="{DynamicResource CornerRadiusXL}"/>
+        <Setter Property="Padding" Value="{DynamicResource SpacingXL}"/>
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect Color="Black" 
+                                  Direction="270" 
+                                  ShadowDepth="16" 
+                                  BlurRadius="48" 
+                                  Opacity="0.5"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- GLASS SIDEBAR STYLE -->
+    <Style x:Key="GlassSidebarStyle" TargetType="Border">
+        <Setter Property="Background">
+            <Setter.Value>
+                <!-- More opaque background for better text visibility -->
+                <SolidColorBrush Color="#F01E1E1E"/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="BorderBrush" Value="{DynamicResource GlassBorderBrush}"/>
+        <Setter Property="BorderThickness" Value="0,0,1,0"/>
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect Color="Black" 
+                                  Direction="0" 
+                                  ShadowDepth="8" 
+                                  BlurRadius="24" 
+                                  Opacity="0.3"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- FLOATING ACTION BUTTON GLASS STYLE -->
+    <Style x:Key="GlassFloatingActionButtonStyle" TargetType="Button">
+        <Setter Property="Background" Value="{DynamicResource GlassAccentBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource PurplePrimaryBrush}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Width" Value="56"/>
+        <Setter Property="Height" Value="56"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid>
+                        <Ellipse Name="GlassBackground"
+                                 Fill="{TemplateBinding Background}"
+                                 Stroke="{TemplateBinding BorderBrush}"
+                                 StrokeThickness="1">
+                            <Ellipse.Effect>
+                                <DropShadowEffect Color="{DynamicResource PurplePrimary}" 
+                                                  Direction="270" 
+                                                  ShadowDepth="4" 
+                                                  BlurRadius="20" 
+                                                  Opacity="0.6"/>
+                            </Ellipse.Effect>
+                        </Ellipse>
+                        
+                        <!-- Content -->
+                        <ContentPresenter HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="GlassBackground" Property="Fill">
+                                <Setter.Value>
+                                    <SolidColorBrush Color="#99A855F7"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="GlassBackground" Property="Fill">
+                                <Setter.Value>
+                                    <SolidColorBrush Color="#CC7C3AED"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- GLASS PROGRESS BAR STYLE -->
+    <Style x:Key="GlassProgressBarStyle" TargetType="ProgressBar">
+        <Setter Property="Background" Value="{DynamicResource GlassSecondaryBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource PurpleGradientBrush}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource GlassBorderBrush}"/>
+        <Setter Property="Height" Value="12"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ProgressBar">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="6">
+                        <Grid x:Name="PART_Track">
+                            <Border Name="PART_Indicator"
+                                    Background="{TemplateBinding Foreground}"
+                                    HorizontalAlignment="Left"
+                                    CornerRadius="6"/>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- GLASS TOOLTIP STYLE -->
+    <Style x:Key="GlassTooltipStyle" TargetType="ToolTip">
+        <Setter Property="Background" Value="{DynamicResource GlassSecondaryBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource GlassBorderBrush}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Foreground" Value="{DynamicResource TextPrimaryBrush}"/>
+        <Setter Property="FontFamily" Value="{DynamicResource PrimaryFont}"/>
+        <Setter Property="FontSize" Value="{DynamicResource FontSizeS}"/>
+        <Setter Property="Padding" Value="12,8"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToolTip">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="{DynamicResource CornerRadiusM}"
+                            Padding="{TemplateBinding Padding}">
+                        <Border.Effect>
+                            <DropShadowEffect Color="Black" 
+                                              Direction="270" 
+                                              ShadowDepth="4" 
+                                              BlurRadius="16" 
+                                              Opacity="0.3"/>
+                        </Border.Effect>
+                        <ContentPresenter/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

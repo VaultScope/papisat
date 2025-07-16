@@ -1,0 +1,312 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:VaultScope.UI.ViewModels"
+             x:Class="VaultScope.UI.Views.ScanProgressView"
+             x:DataType="vm:ScanProgressViewModel">
+
+  <ScrollViewer>
+    <StackPanel Classes="ContentContainer">
+      
+      <!-- Header -->
+      <Border Classes="GlassCard" Margin="0,0,0,24">
+        <StackPanel>
+          <TextBlock Text="Active Scan Progress" 
+                     Classes="HeadingLarge" 
+                     Margin="0,0,0,8" />
+          <TextBlock Text="Monitor real-time scan progress and vulnerability detection"
+                     Classes="BodyLarge"
+                     Foreground="{StaticResource TextSecondaryBrush}" />
+        </StackPanel>
+      </Border>
+
+      <!-- Progress Overview -->
+      <Grid ColumnDefinitions="2*,*" Margin="0,0,0,24">
+        
+        <!-- Main Progress -->
+        <Border Grid.Column="0" Classes="GlassCard">
+          <StackPanel>
+            <TextBlock Text="Scan Progress" 
+                       Classes="HeadingMedium" 
+                       Margin="0,0,0,16" />
+            
+            <!-- Progress Bar -->
+            <ProgressBar Value="{Binding ProgressPercentage}" 
+                         Maximum="100" 
+                         Classes="GlassProgressBar" 
+                         Height="12" 
+                         Margin="0,0,0,8" />
+            
+            <Grid ColumnDefinitions="*,Auto">
+              <TextBlock Grid.Column="0" 
+                         Text="{Binding CurrentTask}" 
+                         Classes="BodyMedium" />
+              <TextBlock Grid.Column="1" 
+                         Text="{Binding ProgressPercentage, StringFormat='{}{0:F1}%'}" 
+                         Classes="BodyMedium" 
+                         FontWeight="Medium" />
+            </Grid>
+
+            <!-- Status Grid -->
+            <Grid ColumnDefinitions="*,*,*" Margin="0,24,0,0">
+              
+              <!-- Elapsed Time -->
+              <StackPanel Grid.Column="0">
+                <TextBlock Text="{Binding ElapsedTime, StringFormat='hh\\:mm\\:ss'}" 
+                           Classes="HeadingSmall" 
+                           HorizontalAlignment="Center" 
+                           Foreground="{StaticResource InfoBrush}" />
+                <TextBlock Text="Elapsed Time" 
+                           Classes="BodySmall" 
+                           HorizontalAlignment="Center" 
+                           Foreground="{StaticResource TextSecondaryBrush}" />
+              </StackPanel>
+
+              <!-- Endpoints Tested -->
+              <StackPanel Grid.Column="1">
+                <TextBlock Text="{Binding EndpointsTested}" 
+                           Classes="HeadingSmall" 
+                           HorizontalAlignment="Center" 
+                           Foreground="{StaticResource PrimaryBrush}" />
+                <TextBlock Text="Endpoints Tested" 
+                           Classes="BodySmall" 
+                           HorizontalAlignment="Center" 
+                           Foreground="{StaticResource TextSecondaryBrush}" />
+              </StackPanel>
+
+              <!-- Vulnerabilities Found -->
+              <StackPanel Grid.Column="2">
+                <TextBlock Text="{Binding VulnerabilitiesFound}" 
+                           Classes="HeadingSmall" 
+                           HorizontalAlignment="Center" 
+                           Foreground="{StaticResource ErrorBrush}" />
+                <TextBlock Text="Vulnerabilities" 
+                           Classes="BodySmall" 
+                           HorizontalAlignment="Center" 
+                           Foreground="{StaticResource TextSecondaryBrush}" />
+              </StackPanel>
+
+            </Grid>
+            
+          </StackPanel>
+        </Border>
+
+        <!-- Scan Actions -->
+        <Border Grid.Column="1" Classes="GlassCard">
+          <StackPanel>
+            <TextBlock Text="Scan Control" 
+                       Classes="HeadingMedium" 
+                       Margin="0,0,0,16" />
+            
+            <!-- Status -->
+            <Border Classes="InfoBadge" 
+                    HorizontalAlignment="Center" 
+                    Margin="0,0,0,16">
+              <TextBlock Text="{Binding ScanStatus}" 
+                         Classes="BodySmall" 
+                         Foreground="White" />
+            </Border>
+
+            <!-- Action Buttons -->
+            <Button Command="{Binding CancelScanCommand}" 
+                    Classes="GlassButton" 
+                    Background="{StaticResource ErrorBrush}" 
+                    HorizontalContentAlignment="Center" 
+                    Margin="0,0,0,8">
+              <StackPanel Orientation="Horizontal" Spacing="8">
+                <Path Data="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" 
+                      Classes="IconSmall" 
+                      Fill="White" />
+                <TextBlock Text="Cancel Scan" 
+                           Foreground="White" 
+                           FontWeight="Medium" />
+              </StackPanel>
+            </Button>
+
+            <Button Command="{Binding PauseScanCommand}" 
+                    Classes="GlassButton" 
+                    HorizontalContentAlignment="Center">
+              <StackPanel Orientation="Horizontal" Spacing="8">
+                <Path Data="M14,19H18V5H14M6,19H10V5H6V19Z" 
+                      Classes="IconSmall" />
+                <TextBlock Text="Pause Scan" FontWeight="Medium" />
+              </StackPanel>
+            </Button>
+
+            <!-- Performance Stats -->
+            <Border Classes="Separator" Margin="0,16" />
+            
+            <Grid ColumnDefinitions="*,Auto" Margin="0,0,0,8">
+              <TextBlock Grid.Column="0" Text="Requests/sec" 
+                         Classes="BodySmall" />
+              <TextBlock Grid.Column="1" 
+                         Text="{Binding RequestsPerSecond, StringFormat='{}{0:F1}'}" 
+                         Classes="BodySmall" 
+                         FontWeight="Medium" />
+            </Grid>
+
+            <Grid ColumnDefinitions="*,Auto">
+              <TextBlock Grid.Column="0" Text="Completed" 
+                         Classes="BodySmall" />
+              <TextBlock Grid.Column="1" 
+                         Text="{Binding CompletedRequests}" 
+                         Classes="BodySmall" 
+                         FontWeight="Medium" />
+            </Grid>
+            
+          </StackPanel>
+        </Border>
+
+      </Grid>
+
+      <!-- Detector Status -->
+      <Border Classes="GlassCard" Margin="0,0,0,24">
+        <StackPanel>
+          <TextBlock Text="Detector Status" 
+                     Classes="HeadingMedium" 
+                     Margin="0,0,0,16" />
+          
+          <!-- No Detectors Message -->
+          <StackPanel Classes="EmptyState" 
+                      IsVisible="{Binding !ActiveDetectors.Count}">
+            <TextBlock Text="No active detectors" 
+                       Classes="HeadingSmall" 
+                       Foreground="{StaticResource TextMutedBrush}" />
+            <TextBlock Text="Start a scan to see detector activity" 
+                       Classes="BodyMedium" 
+                       Foreground="{StaticResource TextTertiaryBrush}" />
+          </StackPanel>
+
+          <!-- Detectors Grid -->
+          <ItemsControl ItemsSource="{Binding ActiveDetectors}" 
+                        IsVisible="{Binding ActiveDetectors.Count}">
+            <ItemsControl.ItemsPanel>
+              <ItemsPanelTemplate>
+                <UniformGrid Columns="2" />
+              </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+              <DataTemplate>
+                <Border Classes="GlassCard" 
+                        Margin="0,0,8,8" 
+                        Padding="16">
+                  <StackPanel>
+                    <Grid ColumnDefinitions="*,Auto" Margin="0,0,0,8">
+                      <TextBlock Grid.Column="0" 
+                                 Text="{Binding Name}" 
+                                 Classes="BodyMedium" 
+                                 FontWeight="Medium" />
+                      <Border Grid.Column="1" 
+                              Classes="StatusBadge" 
+                              Background="{StaticResource SuccessBrush}">
+                        <TextBlock Text="{Binding Status}" 
+                                   Classes="CaptionText" 
+                                   Foreground="White" />
+                      </Border>
+                    </Grid>
+
+                    <ProgressBar Value="{Binding Progress}" 
+                                 Maximum="100" 
+                                 Classes="GlassProgressBar" 
+                                 Height="4" 
+                                 Margin="0,0,0,8" />
+
+                    <Grid ColumnDefinitions="*,Auto">
+                      <TextBlock Grid.Column="0" 
+                                 Text="{Binding LastActivity, StringFormat='Last: {0:HH:mm:ss}'}" 
+                                 Classes="CaptionText" 
+                                 Foreground="{StaticResource TextTertiaryBrush}" />
+                      <TextBlock Grid.Column="1" 
+                                 Text="{Binding VulnerabilitiesFound, StringFormat='{}{0} found'}" 
+                                 Classes="CaptionText" 
+                                 Foreground="{StaticResource ErrorBrush}" />
+                    </Grid>
+                  </StackPanel>
+                </Border>
+              </DataTemplate>
+            </ItemsControl.ItemTemplate>
+          </ItemsControl>
+          
+        </StackPanel>
+      </Border>
+
+      <!-- Recent Vulnerabilities -->
+      <Border Classes="GlassCard">
+        <StackPanel>
+          <TextBlock Text="Recently Discovered Vulnerabilities" 
+                     Classes="HeadingMedium" 
+                     Margin="0,0,0,16" />
+          
+          <!-- No Vulnerabilities Message -->
+          <StackPanel Classes="EmptyState" 
+                      IsVisible="{Binding !RecentVulnerabilities.Count}">
+            <Path Data="M12,2C13.1,2 14,2.9 14,4C14,5.1 13.1,6 12,6C10.9,6 10,5.1 10,4C10,2.9 10.9,2 12,2M21,9V7L15,1H5C3.89,1 3,1.89 3,3V21A2,2 0 0,0 5,23H19A2,2 0 0,0 21,21V9M19,9H14V4H5V21H19V9Z" 
+                  Classes="IconLarge" 
+                  Fill="{StaticResource SuccessBrush}" />
+            <TextBlock Text="No vulnerabilities found yet" 
+                       Classes="HeadingSmall" 
+                       Foreground="{StaticResource SuccessBrush}" />
+            <TextBlock Text="This is good news! Keep scanning to ensure comprehensive coverage." 
+                       Classes="BodyMedium" 
+                       Foreground="{StaticResource TextTertiaryBrush}" />
+          </StackPanel>
+
+          <!-- Vulnerabilities List -->
+          <ListBox ItemsSource="{Binding RecentVulnerabilities}" 
+                   Background="Transparent" 
+                   BorderThickness="0"
+                   MaxHeight="300"
+                   ScrollViewer.VerticalScrollBarVisibility="Auto"
+                   IsVisible="{Binding RecentVulnerabilities.Count}">
+            <ListBox.ItemTemplate>
+              <DataTemplate>
+                <Border Classes="GlassCard" 
+                        Margin="0,0,0,8" 
+                        Padding="16">
+                  <Grid ColumnDefinitions="*,Auto,Auto">
+                    
+                    <!-- Vulnerability Info -->
+                    <StackPanel Grid.Column="0">
+                      <TextBlock Text="{Binding Title}" 
+                                 Classes="BodyMedium" 
+                                 FontWeight="Medium" />
+                      <TextBlock Text="{Binding AffectedEndpoint}" 
+                                 Classes="BodySmall" 
+                                 Foreground="{StaticResource TextTertiaryBrush}" />
+                    </StackPanel>
+
+                    <!-- Severity -->
+                    <Border Grid.Column="1" 
+                            Classes="CriticalBadge" 
+                            VerticalAlignment="Center" 
+                            Margin="16,0">
+                      <TextBlock Text="{Binding Severity}" 
+                                 Classes="CaptionText" 
+                                 Foreground="White" />
+                    </Border>
+
+                    <!-- Confidence -->
+                    <StackPanel Grid.Column="2" 
+                                VerticalAlignment="Center">
+                      <TextBlock Text="{Binding ConfidenceScore, StringFormat='{}{0:P0}'}" 
+                                 Classes="BodySmall" 
+                                 HorizontalAlignment="Center" 
+                                 Foreground="{StaticResource SuccessBrush}" />
+                      <TextBlock Text="Confidence" 
+                                 Classes="CaptionText" 
+                                 HorizontalAlignment="Center" 
+                                 Foreground="{StaticResource TextTertiaryBrush}" />
+                    </StackPanel>
+
+                  </Grid>
+                </Border>
+              </DataTemplate>
+            </ListBox.ItemTemplate>
+          </ListBox>
+          
+        </StackPanel>
+      </Border>
+
+    </StackPanel>
+  </ScrollViewer>
+
+</UserControl>

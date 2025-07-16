@@ -1,0 +1,218 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:VaultScope.UI.ViewModels"
+        xmlns:views="using:VaultScope.UI.Views"
+        x:Class="VaultScope.UI.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Title="VaultScope Enterprise - API Security Assessment"
+        Width="1400" Height="900"
+        MinWidth="1200" MinHeight="700"
+        WindowStartupLocation="CenterScreen"
+        Background="{DynamicResource BackgroundBrush}"
+        TransparencyLevelHint="None"
+        ExtendClientAreaToDecorationsHint="False">
+
+  <Grid RowDefinitions="Auto,*" Background="{DynamicResource BackgroundBrush}">
+    
+    <!-- Title Bar -->
+    <Border Grid.Row="0" Background="{StaticResource SurfaceBrush}" 
+            BorderBrush="{StaticResource GlassBorderBrush}" 
+            BorderThickness="0,0,0,1" 
+            Height="60">
+      <Grid ColumnDefinitions="Auto,*,Auto" Margin="20,0">
+        
+        <!-- Logo and Brand -->
+        <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center" Spacing="12">
+          <Border Width="32" Height="32" 
+                  Background="{StaticResource PrimaryGradientBrush}" 
+                  CornerRadius="8">
+            <TextBlock Text="VS" FontWeight="Bold" FontSize="14" 
+                       Foreground="White" 
+                       HorizontalAlignment="Center" 
+                       VerticalAlignment="Center" />
+          </Border>
+          <StackPanel VerticalAlignment="Center">
+            <TextBlock Text="VaultScope Enterprise" 
+                       Classes="HeadingSmall" 
+                       Foreground="{StaticResource TextPrimaryBrush}" />
+            <TextBlock Text="API Security Assessment Tool" 
+                       Classes="CaptionText" 
+                       Foreground="{StaticResource TextTertiaryBrush}" />
+          </StackPanel>
+        </StackPanel>
+        
+        <!-- Status Indicators -->
+        <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center" Spacing="16">
+          <Border Classes="StatusBadge" 
+                  Background="{StaticResource SuccessBrush}"
+                  IsVisible="{Binding IsConnected}">
+            <TextBlock Text="Connected" 
+                       Classes="BodySmall" 
+                       Foreground="White" />
+          </Border>
+          <Border Classes="StatusBadge" 
+                  Background="{StaticResource ErrorBrush}"
+                  IsVisible="{Binding !IsConnected}">
+            <TextBlock Text="Offline" 
+                       Classes="BodySmall" 
+                       Foreground="White" />
+          </Border>
+        </StackPanel>
+        
+      </Grid>
+    </Border>
+    
+    <!-- Main Content Area -->
+    <Grid Grid.Row="1" ColumnDefinitions="280,*">
+      
+      <!-- Navigation Sidebar -->
+      <Border Grid.Column="0" Classes="GlassNavigationPanel">
+        <ScrollViewer>
+          <StackPanel Margin="20" Spacing="8">
+            
+            <!-- Navigation Header -->
+            <TextBlock Text="Navigation" 
+                       Classes="BodySmall" 
+                       Foreground="{StaticResource TextTertiaryBrush}" 
+                       Margin="16,0,0,8" />
+            
+            <!-- Dashboard -->
+            <Button Command="{Binding NavigateToCommand}" 
+                    CommandParameter="Dashboard"
+                    Classes="NavigationButton"
+                    Classes.NavigationButtonActive="{Binding IsDashboardActive}"
+                    Name="DashboardButton">
+              <StackPanel Orientation="Horizontal" Spacing="12">
+                <Path Data="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z" 
+                      Classes="IconSmall" />
+                <TextBlock Text="Dashboard" VerticalAlignment="Center" />
+              </StackPanel>
+            </Button>
+            
+            <!-- Scan Configuration -->
+            <Button Command="{Binding NavigateToCommand}" 
+                    CommandParameter="ScanConfiguration"
+                    Classes="NavigationButton"
+                    Classes.NavigationButtonActive="{Binding IsScanConfigurationActive}"
+                    Name="ScanConfigurationButton">
+              <StackPanel Orientation="Horizontal" Spacing="12">
+                <Path Data="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" 
+                      Classes="IconSmall" />
+                <TextBlock Text="Scan Configuration" VerticalAlignment="Center" />
+              </StackPanel>
+            </Button>
+            
+            <!-- Active Scans -->
+            <Button Command="{Binding NavigateToCommand}" 
+                    CommandParameter="ScanProgress"
+                    Classes="NavigationButton"
+                    Classes.NavigationButtonActive="{Binding IsScanProgressActive}"
+                    Name="ScanProgressButton">
+              <StackPanel Orientation="Horizontal" Spacing="12">
+                <Path Data="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" 
+                      Classes="IconSmall" />
+                <TextBlock Text="Active Scans" VerticalAlignment="Center" />
+              </StackPanel>
+            </Button>
+            
+            <!-- Results -->
+            <Button Command="{Binding NavigateToCommand}" 
+                    CommandParameter="ScanResults"
+                    Classes="NavigationButton"
+                    Classes.NavigationButtonActive="{Binding IsScanResultsActive}"
+                    Name="ScanResultsButton">
+              <StackPanel Orientation="Horizontal" Spacing="12">
+                <Path Data="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" 
+                      Classes="IconSmall" />
+                <TextBlock Text="Scan Results" VerticalAlignment="Center" />
+              </StackPanel>
+            </Button>
+            
+            <!-- Vulnerabilities -->
+            <Button Command="{Binding NavigateToCommand}" 
+                    CommandParameter="VulnerabilityDetails"
+                    Classes="NavigationButton"
+                    Classes.NavigationButtonActive="{Binding IsVulnerabilityDetailsActive}"
+                    Name="VulnerabilityDetailsButton">
+              <StackPanel Orientation="Horizontal" Spacing="12">
+                <Path Data="M12,2C13.1,2 14,2.9 14,4C14,5.1 13.1,6 12,6C10.9,6 10,5.1 10,4C10,2.9 10.9,2 12,2M21,9V7L15,1H5C3.89,1 3,1.89 3,3V21A2,2 0 0,0 5,23H19A2,2 0 0,0 21,21V9M19,9H14V4H5V21H19V9Z" 
+                      Classes="IconSmall" />
+                <TextBlock Text="Vulnerabilities" VerticalAlignment="Center" />
+              </StackPanel>
+            </Button>
+            
+            <Border Classes="Separator" Margin="16,16" />
+            
+            <!-- Settings -->
+            <Button Command="{Binding NavigateToCommand}" 
+                    CommandParameter="Settings"
+                    Classes="NavigationButton"
+                    Classes.NavigationButtonActive="{Binding IsSettingsActive}"
+                    Name="SettingsButton">
+              <StackPanel Orientation="Horizontal" Spacing="12">
+                <Path Data="M12,15.5A3.5,3.5 0 0,1 8.5,12A3.5,3.5 0 0,1 12,8.5A3.5,3.5 0 0,1 15.5,12A3.5,3.5 0 0,1 12,15.5M19.43,12.97C19.47,12.65 19.5,12.33 19.5,12C19.5,11.67 19.47,11.34 19.43,11L21.54,9.37C21.73,9.22 21.78,8.95 21.66,8.73L19.66,5.27C19.54,5.05 19.27,4.96 19.05,5.05L16.56,6.05C16.04,5.66 15.5,5.32 14.87,5.07L14.5,2.42C14.46,2.18 14.25,2 14,2H10C9.75,2 9.54,2.18 9.5,2.42L9.13,5.07C8.5,5.32 7.96,5.66 7.44,6.05L4.95,5.05C4.73,4.96 4.46,5.05 4.34,5.27L2.34,8.73C2.22,8.95 2.27,9.22 2.46,9.37L4.57,11C4.53,11.34 4.5,11.67 4.5,12C4.5,12.33 4.53,12.65 4.57,12.97L2.46,14.63C2.27,14.78 2.22,15.05 2.34,15.27L4.34,18.73C4.46,18.95 4.73,19.03 4.95,18.95L7.44,17.94C7.96,18.34 8.5,18.68 9.13,18.93L9.5,21.58C9.54,21.82 9.75,22 10,22H14C14.25,22 14.46,21.82 14.5,21.58L14.87,18.93C15.5,18.68 16.04,18.34 16.56,17.94L19.05,18.95C19.27,19.03 19.54,18.95 19.66,18.73L21.66,15.27C21.78,15.05 21.73,14.78 21.54,14.63L19.43,12.97Z" 
+                      Classes="IconSmall" />
+                <TextBlock Text="Settings" VerticalAlignment="Center" />
+              </StackPanel>
+            </Button>
+            
+            <!-- Quick Actions Section -->
+            <TextBlock Text="Quick Actions" 
+                       Classes="BodySmall" 
+                       Foreground="{StaticResource TextTertiaryBrush}" 
+                       Margin="16,24,0,8" />
+            
+            <Button Classes="PrimaryGlassButton" 
+                    Command="{Binding StartQuickScanCommand}"
+                    Margin="0,4">
+              <StackPanel Orientation="Horizontal" Spacing="8">
+                <Path Data="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" 
+                      Classes="IconSmall" 
+                      Fill="White" />
+                <TextBlock Text="Quick Scan" Foreground="White" FontWeight="Medium" />
+              </StackPanel>
+            </Button>
+            
+          </StackPanel>
+        </ScrollViewer>
+      </Border>
+      
+      <!-- Main Content -->
+      <ContentControl Grid.Column="1" 
+                      Content="{Binding CurrentViewModel}"
+                      Margin="0">
+        <ContentControl.ContentTemplate>
+          <DataTemplate x:DataType="vm:ViewModelBase">
+            <ContentControl Content="{Binding}" />
+          </DataTemplate>
+        </ContentControl.ContentTemplate>
+        
+        <!-- View Templates -->
+        <ContentControl.DataTemplates>
+          <DataTemplate DataType="vm:DashboardViewModel">
+            <views:DashboardView />
+          </DataTemplate>
+          <DataTemplate DataType="vm:ScanConfigurationViewModel">
+            <views:ScanConfigurationView />
+          </DataTemplate>
+          <DataTemplate DataType="vm:ScanProgressViewModel">
+            <views:ScanProgressView />
+          </DataTemplate>
+          <DataTemplate DataType="vm:ScanResultsViewModel">
+            <views:ScanResultsView />
+          </DataTemplate>
+          <DataTemplate DataType="vm:VulnerabilityDetailsViewModel">
+            <views:VulnerabilityDetailsView />
+          </DataTemplate>
+          <DataTemplate DataType="vm:SettingsViewModel">
+            <views:SettingsView />
+          </DataTemplate>
+        </ContentControl.DataTemplates>
+        
+      </ContentControl>
+      
+    </Grid>
+    
+  </Grid>
+  
+</Window>

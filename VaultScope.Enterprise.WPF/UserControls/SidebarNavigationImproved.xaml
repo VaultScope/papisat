@@ -1,0 +1,334 @@
+<UserControl x:Class="VaultScope.Enterprise.WPF.UserControls.SidebarNavigationImproved"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             Width="260"
+             Background="{DynamicResource SidebarBackgroundBrush}">
+    
+    <Border BorderBrush="{DynamicResource BorderLightBrush}"
+            BorderThickness="0,0,1,0">
+        <Grid>
+            <Grid.RowDefinitions>
+                <!-- HEADER SECTION WITH MORE BREATHING ROOM -->
+                <RowDefinition Height="100"/>
+                <!-- NAVIGATION SECTION -->
+                <RowDefinition Height="*"/>
+                <!-- VERSION SECTION -->
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            
+            <!-- HEADER SECTION -->
+            <Grid Grid.Row="0" Margin="24,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="56"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                
+                <!-- LOGO -->
+                <Border Grid.Column="0"
+                        Width="56" Height="56"
+                        Background="{DynamicResource PurpleGradientBrush}"
+                        CornerRadius="12"
+                        VerticalAlignment="Center">
+                    <TextBlock Text="VS"
+                               FontFamily="{DynamicResource PrimaryFontFamily}"
+                               FontSize="24"
+                               FontWeight="Bold"
+                               Foreground="White"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"/>
+                </Border>
+                
+                <!-- TITLE AND SUBTITLE -->
+                <StackPanel Grid.Column="1"
+                            Margin="16,0,0,0"
+                            VerticalAlignment="Center">
+                    <TextBlock Text="VaultScope"
+                               FontFamily="{DynamicResource PrimaryFontFamily}"
+                               FontSize="18"
+                               FontWeight="SemiBold"
+                               Foreground="{DynamicResource TextPrimaryBrush}"/>
+                    <TextBlock Text="Enterprise Security"
+                               FontFamily="{DynamicResource PrimaryFontFamily}"
+                               FontSize="12"
+                               FontWeight="Normal"
+                               Foreground="{DynamicResource TextSecondaryBrush}"
+                               Margin="0,2,0,0"/>
+                </StackPanel>
+            </Grid>
+            
+            <!-- NAVIGATION SECTION -->
+            <ScrollViewer Grid.Row="1"
+                          VerticalScrollBarVisibility="Auto"
+                          HorizontalScrollBarVisibility="Disabled"
+                          Margin="0,16,0,0">
+                <StackPanel Margin="20,0">
+                    
+                    <!-- MAIN NAVIGATION SECTION -->
+                    <TextBlock Text="MAIN NAVIGATION"
+                               FontFamily="{DynamicResource PrimaryFontFamily}"
+                               FontSize="11"
+                               FontWeight="SemiBold"
+                               Foreground="{DynamicResource TextSecondaryBrush}"
+                               Margin="4,0,0,12"
+                               Opacity="0.8"/>
+                    
+                    <!-- SECURITY DASHBOARD -->
+                    <Button x:Name="SecurityDashboardButton"
+                            Style="{DynamicResource NavigationButtonActiveStyle}"
+                            Height="64"
+                            Margin="0,4"
+                            Click="SecurityDashboardButton_Click">
+                        <Grid Margin="4,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            
+                            <Border Grid.Column="0"
+                                    Width="36" Height="36"
+                                    Background="{DynamicResource PurpleGradientBrush}"
+                                    CornerRadius="8"
+                                    Margin="0,0,16,0">
+                                <TextBlock Text="&#xE80F;"
+                                           FontFamily="Segoe MDL2 Assets"
+                                           FontSize="18"
+                                           Foreground="White"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"/>
+                            </Border>
+                            
+                            <StackPanel Grid.Column="1"
+                                        VerticalAlignment="Center">
+                                <TextBlock Text="Security Dashboard"
+                                           FontFamily="{DynamicResource PrimaryFontFamily}"
+                                           FontSize="15"
+                                           FontWeight="Medium"
+                                           Foreground="{DynamicResource TextPrimaryBrush}"/>
+                                <TextBlock Text="Overview and metrics"
+                                           FontFamily="{DynamicResource PrimaryFontFamily}"
+                                           FontSize="12"
+                                           FontWeight="Normal"
+                                           Foreground="{DynamicResource TextSecondaryBrush}"
+                                           Margin="0,2,0,0"/>
+                            </StackPanel>
+                        </Grid>
+                    </Button>
+                    
+                    <!-- VULNERABILITY SCANNER -->
+                    <Button x:Name="VulnerabilityScannerButton"
+                            Style="{DynamicResource NavigationButtonStyle}"
+                            Height="64"
+                            Margin="0,4"
+                            Click="VulnerabilityScannerButton_Click">
+                        <Grid Margin="4,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            
+                            <Border Grid.Column="0"
+                                    Width="36" Height="36"
+                                    Background="#333333"
+                                    CornerRadius="8"
+                                    Margin="0,0,16,0">
+                                <TextBlock Text="&#xE72C;"
+                                           FontFamily="Segoe MDL2 Assets"
+                                           FontSize="18"
+                                           Foreground="{DynamicResource TextSecondaryBrush}"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"/>
+                            </Border>
+                            
+                            <StackPanel Grid.Column="1"
+                                        VerticalAlignment="Center">
+                                <TextBlock Text="Vulnerability Scanner"
+                                           FontFamily="{DynamicResource PrimaryFontFamily}"
+                                           FontSize="15"
+                                           FontWeight="Medium"
+                                           Foreground="{DynamicResource TextPrimaryBrush}"/>
+                                <TextBlock Text="Scan for security issues"
+                                           FontFamily="{DynamicResource PrimaryFontFamily}"
+                                           FontSize="12"
+                                           FontWeight="Normal"
+                                           Foreground="{DynamicResource TextSecondaryBrush}"
+                                           Margin="0,2,0,0"/>
+                            </StackPanel>
+                        </Grid>
+                    </Button>
+                    
+                    <!-- REPORTS & ANALYTICS -->
+                    <Button x:Name="ReportsButton"
+                            Style="{DynamicResource NavigationButtonStyle}"
+                            Height="64"
+                            Margin="0,4"
+                            Click="ReportsButton_Click">
+                        <Grid Margin="4,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            
+                            <Border Grid.Column="0"
+                                    Width="36" Height="36"
+                                    Background="#333333"
+                                    CornerRadius="8"
+                                    Margin="0,0,16,0">
+                                <TextBlock Text="&#xE9F9;"
+                                           FontFamily="Segoe MDL2 Assets"
+                                           FontSize="18"
+                                           Foreground="{DynamicResource TextSecondaryBrush}"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"/>
+                            </Border>
+                            
+                            <StackPanel Grid.Column="1"
+                                        VerticalAlignment="Center">
+                                <TextBlock Text="Reports &amp; Analytics"
+                                           FontFamily="{DynamicResource PrimaryFontFamily}"
+                                           FontSize="15"
+                                           FontWeight="Medium"
+                                           Foreground="{DynamicResource TextPrimaryBrush}"/>
+                                <TextBlock Text="View and export reports"
+                                           FontFamily="{DynamicResource PrimaryFontFamily}"
+                                           FontSize="12"
+                                           FontWeight="Normal"
+                                           Foreground="{DynamicResource TextSecondaryBrush}"
+                                           Margin="0,2,0,0"/>
+                            </StackPanel>
+                        </Grid>
+                    </Button>
+                    
+                    <!-- DIVIDER -->
+                    <Border Height="1"
+                            Background="{DynamicResource BorderLightBrush}"
+                            Margin="4,24,4,24"
+                            Opacity="0.3"/>
+                    
+                    <!-- QUICK ACTIONS SECTION -->
+                    <TextBlock Text="QUICK ACTIONS"
+                               FontFamily="{DynamicResource PrimaryFontFamily}"
+                               FontSize="11"
+                               FontWeight="SemiBold"
+                               Foreground="{DynamicResource TextSecondaryBrush}"
+                               Margin="4,0,0,12"
+                               Opacity="0.8"/>
+                    
+                    <!-- QUICK SECURITY SCAN -->
+                    <Button x:Name="QuickScanButton"
+                            Style="{DynamicResource QuickActionButtonStyle}"
+                            Height="48"
+                            Margin="0,4"
+                            Click="QuickScanButton_Click">
+                        <Grid Margin="4,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            
+                            <TextBlock Grid.Column="0"
+                                       Text="&#xE945;"
+                                       FontFamily="Segoe MDL2 Assets"
+                                       FontSize="18"
+                                       Foreground="{DynamicResource PurplePrimaryBrush}"
+                                       VerticalAlignment="Center"
+                                       Margin="8,0,16,0"/>
+                            
+                            <TextBlock Grid.Column="1"
+                                       Text="Quick Security Scan"
+                                       FontFamily="{DynamicResource PrimaryFontFamily}"
+                                       FontSize="14"
+                                       FontWeight="Medium"
+                                       Foreground="{DynamicResource TextPrimaryBrush}"
+                                       VerticalAlignment="Center"/>
+                        </Grid>
+                    </Button>
+                    
+                    <!-- SETTINGS & CONFIGURATION -->
+                    <Button x:Name="SettingsButton"
+                            Style="{DynamicResource QuickActionButtonStyle}"
+                            Height="48"
+                            Margin="0,4"
+                            Click="SettingsButton_Click">
+                        <Grid Margin="4,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            
+                            <TextBlock Grid.Column="0"
+                                       Text="&#xE713;"
+                                       FontFamily="Segoe MDL2 Assets"
+                                       FontSize="18"
+                                       Foreground="{DynamicResource PurplePrimaryBrush}"
+                                       VerticalAlignment="Center"
+                                       Margin="8,0,16,0"/>
+                            
+                            <TextBlock Grid.Column="1"
+                                       Text="Settings"
+                                       FontFamily="{DynamicResource PrimaryFontFamily}"
+                                       FontSize="14"
+                                       FontWeight="Medium"
+                                       Foreground="{DynamicResource TextPrimaryBrush}"
+                                       VerticalAlignment="Center"/>
+                        </Grid>
+                    </Button>
+                    
+                    <!-- INITIALIZE SECURITY SCAN -->
+                    <Button x:Name="InitializeScanButton"
+                            Style="{DynamicResource QuickActionButtonStyle}"
+                            Height="48"
+                            Margin="0,4,0,20"
+                            Click="InitializeScanButton_Click">
+                        <Grid Margin="4,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            
+                            <TextBlock Grid.Column="0"
+                                       Text="&#xE72A;"
+                                       FontFamily="Segoe MDL2 Assets"
+                                       FontSize="18"
+                                       Foreground="{DynamicResource PurplePrimaryBrush}"
+                                       VerticalAlignment="Center"
+                                       Margin="8,0,16,0"/>
+                            
+                            <TextBlock Grid.Column="1"
+                                       Text="Initialize Scan"
+                                       FontFamily="{DynamicResource PrimaryFontFamily}"
+                                       FontSize="14"
+                                       FontWeight="Medium"
+                                       Foreground="{DynamicResource TextPrimaryBrush}"
+                                       VerticalAlignment="Center"/>
+                        </Grid>
+                    </Button>
+                    
+                </StackPanel>
+            </ScrollViewer>
+            
+            <!-- VERSION SECTION -->
+            <Border Grid.Row="2"
+                    Background="#1F1F1F"
+                    Padding="24,16">
+                <StackPanel>
+                    <TextBlock Text="VaultScope Enterprise"
+                               FontFamily="{DynamicResource PrimaryFontFamily}"
+                               FontSize="13"
+                               FontWeight="Medium"
+                               Foreground="{DynamicResource TextPrimaryBrush}"/>
+                    <TextBlock Text="Version 1.0.0"
+                               FontFamily="{DynamicResource PrimaryFontFamily}"
+                               FontSize="11"
+                               FontWeight="Normal"
+                               Foreground="{DynamicResource TextSecondaryBrush}"
+                               Margin="0,2,0,0"/>
+                </StackPanel>
+            </Border>
+            
+        </Grid>
+    </Border>
+    
+</UserControl>

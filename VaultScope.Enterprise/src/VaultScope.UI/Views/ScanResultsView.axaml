@@ -1,0 +1,311 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:VaultScope.UI.ViewModels"
+             x:Class="VaultScope.UI.Views.ScanResultsView"
+             x:DataType="vm:ScanResultsViewModel">
+
+  <Grid RowDefinitions="Auto,*">
+    
+    <!-- Header -->
+    <Border Grid.Row="0" Classes="GlassCard" Margin="24,24,24,0">
+      <StackPanel>
+        <TextBlock Text="Scan Results" 
+                   Classes="HeadingLarge" 
+                   Margin="0,0,0,8" />
+        <TextBlock Text="View and analyze completed security scan results and vulnerabilities"
+                   Classes="BodyLarge"
+                   Foreground="{StaticResource TextSecondaryBrush}" />
+      </StackPanel>
+    </Border>
+
+    <!-- Main Content -->
+    <Grid Grid.Row="1" ColumnDefinitions="*,2*" Margin="24">
+      
+      <!-- Left Panel - Scan Results List -->
+      <Border Grid.Column="0" Classes="GlassCard" Margin="0,0,12,0">
+        <StackPanel>
+          <Grid ColumnDefinitions="*,Auto" Margin="0,0,0,16">
+            <TextBlock Grid.Column="0" Text="Scan History" 
+                       Classes="HeadingMedium" />
+            <Button Grid.Column="1" 
+                    Content="Refresh" 
+                    Classes="GlassButton" 
+                    Command="{Binding RefreshCommand}" />
+          </Grid>
+
+          <!-- Summary Stats -->
+          <Grid ColumnDefinitions="*,*,*" Margin="0,0,0,16">
+            <StackPanel Grid.Column="0">
+              <TextBlock Text="{Binding TotalScans}" 
+                         Classes="BodyLarge" 
+                         HorizontalAlignment="Center" 
+                         Foreground="{StaticResource PrimaryBrush}" 
+                         FontWeight="SemiBold" />
+              <TextBlock Text="Total Scans" 
+                         Classes="CaptionText" 
+                         HorizontalAlignment="Center" />
+            </StackPanel>
+            
+            <StackPanel Grid.Column="1">
+              <TextBlock Text="{Binding TotalVulnerabilities}" 
+                         Classes="BodyLarge" 
+                         HorizontalAlignment="Center" 
+                         Foreground="{StaticResource ErrorBrush}" 
+                         FontWeight="SemiBold" />
+              <TextBlock Text="Vulnerabilities" 
+                         Classes="CaptionText" 
+                         HorizontalAlignment="Center" />
+            </StackPanel>
+            
+            <StackPanel Grid.Column="2">
+              <TextBlock Text="{Binding AverageScore, StringFormat='{}{0:F1}'}" 
+                         Classes="BodyLarge" 
+                         HorizontalAlignment="Center" 
+                         Foreground="{StaticResource SuccessBrush}" 
+                         FontWeight="SemiBold" />
+              <TextBlock Text="Avg Score" 
+                         Classes="CaptionText" 
+                         HorizontalAlignment="Center" />
+            </StackPanel>
+          </Grid>
+
+          <!-- Filters -->
+          <StackPanel Spacing="8" Margin="0,0,0,16">
+            <TextBox Text="{Binding SearchText}" 
+                     Classes="GlassTextBox" 
+                     Watermark="Search scans..." />
+            
+            <ComboBox SelectedItem="{Binding SelectedStatusFilter}" 
+                      Classes="GlassTextBox">
+              <ComboBoxItem Content="All" />
+              <ComboBoxItem Content="Completed" />
+              <ComboBoxItem Content="Failed" />
+              <ComboBoxItem Content="Cancelled" />
+            </ComboBox>
+          </StackPanel>
+
+          <!-- Loading State -->
+          <Border Classes="LoadingIndicator" 
+                  IsVisible="{Binding IsLoading}">
+            <StackPanel Spacing="8">
+              <ProgressBar IsIndeterminate="True" Width="150" Height="4" />
+              <TextBlock Text="Loading scan results..." 
+                         Classes="BodySmall" 
+                         HorizontalAlignment="Center" />
+            </StackPanel>
+          </Border>
+
+          <!-- No Results Message -->
+          <StackPanel Classes="EmptyState" 
+                      IsVisible="{Binding !ScanResults.Count}">
+            <TextBlock Text="No scan results found" 
+                       Classes="HeadingSmall" 
+                       Foreground="{StaticResource TextMutedBrush}" />
+            <TextBlock Text="Complete a scan to see results here" 
+                       Classes="BodyMedium" 
+                       Foreground="{StaticResource TextTertiaryBrush}" />
+          </StackPanel>
+
+          <!-- Scan Results List -->
+          <ListBox ItemsSource="{Binding ScanResults}" 
+                   SelectedItem="{Binding SelectedScanResult}"
+                   Background="Transparent" 
+                   BorderThickness="0"
+                   ScrollViewer.VerticalScrollBarVisibility="Auto"
+                   IsVisible="{Binding ScanResults.Count}">
+            <ListBox.ItemTemplate>
+              <DataTemplate>
+                <Border Classes="GlassCard" 
+                        Margin="0,0,0,8" 
+                        Padding="12">
+                  <StackPanel>
+                    <Grid ColumnDefinitions="*,Auto" Margin="0,0,0,4">
+                      <TextBlock Grid.Column="0" 
+                                 Text="{Binding TargetUrl}" 
+                                 Classes="BodyMedium" 
+                                 FontWeight="Medium" />
+                      <Border Grid.Column="1" 
+                              Classes="SuccessBadge">
+                        <TextBlock Text="{Binding Status}" 
+                                   Classes="CaptionText" 
+                                   Foreground="White" />
+                      </Border>
+                    </Grid>
+
+                    <TextBlock Text="{Binding StartTime, StringFormat='Started: {0:MM/dd/yy HH:mm}'}" 
+                               Classes="CaptionText" 
+                               Foreground="{StaticResource TextTertiaryBrush}" 
+                               Margin="0,0,0,4" />
+
+                    <Grid ColumnDefinitions="*,Auto">
+                      <TextBlock Grid.Column="0" 
+                                 Text="{Binding SecurityScore.Grade, StringFormat='Grade: {0}'}" 
+                                 Classes="BodySmall" 
+                                 Foreground="{StaticResource SuccessBrush}" />
+                      <TextBlock Grid.Column="1" 
+                                 Text="{Binding Vulnerabilities.Count, StringFormat='{}{0} issues'}" 
+                                 Classes="BodySmall" 
+                                 Foreground="{StaticResource ErrorBrush}" />
+                    </Grid>
+                  </StackPanel>
+                </Border>
+              </DataTemplate>
+            </ListBox.ItemTemplate>
+          </ListBox>
+          
+        </StackPanel>
+      </Border>
+
+      <!-- Right Panel - Scan Details -->
+      <Border Grid.Column="1" Classes="GlassCard" Margin="12,0,0,0">
+        <StackPanel>
+          
+          <!-- No Selection Message -->
+          <StackPanel Classes="EmptyState" 
+                      IsVisible="{Binding !SelectedScanResult}">
+            <Path Data="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M7,13H17V11H7" 
+                  Classes="IconLarge" 
+                  Fill="{StaticResource TextMutedBrush}" />
+            <TextBlock Text="Select a scan result" 
+                       Classes="HeadingSmall" 
+                       Foreground="{StaticResource TextMutedBrush}" />
+            <TextBlock Text="Choose a scan from the list to view detailed results" 
+                       Classes="BodyMedium" 
+                       Foreground="{StaticResource TextTertiaryBrush}" />
+          </StackPanel>
+
+          <!-- Scan Details -->
+          <StackPanel IsVisible="{Binding SelectedScanResult}">
+            
+            <!-- Scan Header -->
+            <Grid ColumnDefinitions="*,Auto" Margin="0,0,0,16">
+              <StackPanel Grid.Column="0">
+                <TextBlock Text="{Binding SelectedScanResult.TargetUrl}" 
+                           Classes="HeadingMedium" />
+                <TextBlock Text="{Binding SelectedScanResult.StartTime, StringFormat='Scan Date: {0:yyyy-MM-dd HH:mm:ss}'}" 
+                           Classes="BodySmall" 
+                           Foreground="{StaticResource TextTertiaryBrush}" />
+              </StackPanel>
+              
+              <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="8">
+                <Button Content="Export HTML" 
+                        Classes="GlassButton" 
+                        Command="{Binding ExportResultsCommand}" 
+                        CommandParameter="Html" />
+                <Button Content="Export JSON" 
+                        Classes="GlassButton" 
+                        Command="{Binding ExportResultsCommand}" 
+                        CommandParameter="Json" />
+              </StackPanel>
+            </Grid>
+
+            <!-- Security Score -->
+            <Border Classes="GlassCard" Margin="0,0,0,16">
+              <Grid ColumnDefinitions="*,*,*">
+                <StackPanel Grid.Column="0">
+                  <TextBlock Text="{Binding SelectedScanResult.SecurityScore.OverallScore, StringFormat='{}{0:F1}'}" 
+                             Classes="HeadingLarge" 
+                             HorizontalAlignment="Center" 
+                             Foreground="{StaticResource SuccessBrush}" />
+                  <TextBlock Text="Security Score" 
+                             Classes="BodySmall" 
+                             HorizontalAlignment="Center" />
+                </StackPanel>
+                
+                <StackPanel Grid.Column="1">
+                  <TextBlock Text="{Binding SelectedScanResult.SecurityScore.Grade}" 
+                             Classes="HeadingLarge" 
+                             HorizontalAlignment="Center" 
+                             Foreground="{StaticResource SuccessBrush}" />
+                  <TextBlock Text="Grade" 
+                             Classes="BodySmall" 
+                             HorizontalAlignment="Center" />
+                </StackPanel>
+                
+                <StackPanel Grid.Column="2">
+                  <TextBlock Text="{Binding SelectedScanResult.TotalRequestsMade}" 
+                             Classes="HeadingLarge" 
+                             HorizontalAlignment="Center" 
+                             Foreground="{StaticResource InfoBrush}" />
+                  <TextBlock Text="Requests Made" 
+                             Classes="BodySmall" 
+                             HorizontalAlignment="Center" />
+                </StackPanel>
+              </Grid>
+            </Border>
+
+            <!-- Vulnerability Filters -->
+            <Grid ColumnDefinitions="*,Auto" Margin="0,0,0,16">
+              <TextBox Grid.Column="0" 
+                       Text="{Binding SearchText}" 
+                       Classes="GlassTextBox" 
+                       Watermark="Search vulnerabilities..." />
+              <ComboBox Grid.Column="1" 
+                        SelectedItem="{Binding SelectedSeverityFilter}" 
+                        Classes="GlassTextBox" 
+                        MinWidth="120">
+                <ComboBoxItem Content="All Severities" />
+                <ComboBoxItem Content="Critical" />
+                <ComboBoxItem Content="High" />
+                <ComboBoxItem Content="Medium" />
+                <ComboBoxItem Content="Low" />
+              </ComboBox>
+            </Grid>
+
+            <!-- Vulnerabilities List -->
+            <ScrollViewer MaxHeight="400" 
+                          VerticalScrollBarVisibility="Auto"
+                          HorizontalScrollBarVisibility="Disabled">
+              <ListBox ItemsSource="{Binding FilteredVulnerabilities}" 
+                       Background="Transparent" 
+                       BorderThickness="0">
+                <ListBox.ItemTemplate>
+                  <DataTemplate>
+                    <Border Classes="GlassCard" 
+                            Margin="0,0,0,8" 
+                            Padding="12">
+                      <StackPanel>
+                        <Grid ColumnDefinitions="*,Auto" Margin="0,0,0,4">
+                          <TextBlock Grid.Column="0" 
+                                     Text="{Binding Title}" 
+                                     Classes="BodyMedium" 
+                                     FontWeight="Medium" />
+                          <Border Grid.Column="1" 
+                                  Classes="CriticalBadge">
+                            <TextBlock Text="{Binding Severity}" 
+                                       Classes="CaptionText" 
+                                       Foreground="White" />
+                          </Border>
+                        </Grid>
+
+                        <TextBlock Text="{Binding AffectedEndpoint}" 
+                                   Classes="BodySmall" 
+                                   Foreground="{StaticResource TextTertiaryBrush}" 
+                                   Margin="0,0,0,4" />
+
+                        <Grid ColumnDefinitions="*,Auto">
+                          <TextBlock Grid.Column="0" 
+                                     Text="{Binding HttpMethod}" 
+                                     Classes="CaptionText" 
+                                     Foreground="{StaticResource InfoBrush}" />
+                          <TextBlock Grid.Column="1" 
+                                     Text="{Binding ConfidenceScore, StringFormat='Confidence: {0:P0}'}" 
+                                     Classes="CaptionText" 
+                                     Foreground="{StaticResource SuccessBrush}" />
+                        </Grid>
+                      </StackPanel>
+                    </Border>
+                  </DataTemplate>
+                </ListBox.ItemTemplate>
+              </ListBox>
+            </ScrollViewer>
+            
+          </StackPanel>
+          
+        </StackPanel>
+      </Border>
+
+    </Grid>
+  </Grid>
+
+</UserControl>

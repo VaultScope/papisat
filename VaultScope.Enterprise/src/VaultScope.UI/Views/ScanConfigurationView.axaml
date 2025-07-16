@@ -1,0 +1,356 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:VaultScope.UI.ViewModels"
+             x:Class="VaultScope.UI.Views.ScanConfigurationView"
+             x:DataType="vm:ScanConfigurationViewModel">
+
+  <ScrollViewer>
+    <StackPanel Classes="ContentContainer">
+      
+      <!-- Header -->
+      <Border Classes="GlassCard" Margin="0,0,0,24">
+        <StackPanel>
+          <TextBlock Text="Scan Configuration" 
+                     Classes="HeadingLarge" 
+                     Margin="0,0,0,8" />
+          <TextBlock Text="Configure your security scan parameters and vulnerability detection settings"
+                     Classes="BodyLarge"
+                     Foreground="{StaticResource TextSecondaryBrush}" />
+        </StackPanel>
+      </Border>
+
+      <!-- Main Configuration Grid -->
+      <Grid ColumnDefinitions="2*,*">
+        
+        <!-- Left Column - Configuration -->
+        <StackPanel Grid.Column="0" Spacing="24">
+          
+          <!-- Target Configuration -->
+          <Border Classes="GlassCard">
+            <StackPanel Classes="SectionContainer">
+              <TextBlock Text="Target Configuration" 
+                         Classes="HeadingSmall" 
+                         Margin="0,0,0,16" />
+              
+              <!-- Target URL -->
+              <Grid Classes="FormGrid">
+                <Grid.RowDefinitions>
+                  <RowDefinition Height="Auto"/>
+                  <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Text="Target URL" Classes="FormLabel" />
+                <TextBox Grid.Row="1" 
+                         Text="{Binding TargetUrl}" 
+                         Classes="FormInput" 
+                         Watermark="http://localhost:3000" />
+              </Grid>
+
+              <!-- Scan Depth -->
+              <Grid Classes="FormGrid">
+                <Grid.RowDefinitions>
+                  <RowDefinition Height="Auto"/>
+                  <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Text="Scan Depth" Classes="FormLabel" />
+                <ComboBox Grid.Row="1" 
+                          SelectedItem="{Binding SelectedDepth}" 
+                          Classes="GlassTextBox">
+                  <ComboBoxItem Content="Quick" />
+                  <ComboBoxItem Content="Normal" />
+                  <ComboBoxItem Content="Deep" />
+                  <ComboBoxItem Content="Comprehensive" />
+                </ComboBox>
+              </Grid>
+
+              <!-- URL Validation Status -->
+              <Border Classes="InfoBadge" 
+                      HorizontalAlignment="Left" 
+                      Margin="0,8,0,0">
+                <TextBlock Text="{Binding ScanStatus}" 
+                           Classes="BodySmall" 
+                           Foreground="White" />
+              </Border>
+              
+            </StackPanel>
+          </Border>
+
+          <!-- Performance Settings -->
+          <Border Classes="GlassCard">
+            <StackPanel Classes="SectionContainer">
+              <TextBlock Text="Performance Settings" 
+                         Classes="HeadingSmall" 
+                         Margin="0,0,0,16" />
+              
+              <!-- Request Rate -->
+              <Grid ColumnDefinitions="*,*">
+                <Grid Grid.Column="0" Classes="FormGrid">
+                  <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                  </Grid.RowDefinitions>
+                  <TextBlock Grid.Row="0" Text="Max Requests/Second" Classes="FormLabel" />
+                  <NumericUpDown Grid.Row="1" 
+                                 Value="{Binding MaxRequestsPerSecond}" 
+                                 Minimum="1" 
+                                 Maximum="100" 
+                                 Increment="1"
+                                 Classes="GlassTextBox" />
+                </Grid>
+
+                <Grid Grid.Column="1" Classes="FormGrid">
+                  <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                  </Grid.RowDefinitions>
+                  <TextBlock Grid.Row="0" Text="Concurrent Requests" Classes="FormLabel" />
+                  <NumericUpDown Grid.Row="1" 
+                                 Value="{Binding MaxConcurrentRequests}" 
+                                 Minimum="1" 
+                                 Maximum="50" 
+                                 Increment="1"
+                                 Classes="GlassTextBox" />
+                </Grid>
+              </Grid>
+
+              <!-- Timeout Settings -->
+              <Grid Classes="FormGrid">
+                <Grid.RowDefinitions>
+                  <RowDefinition Height="Auto"/>
+                  <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Text="Request Timeout (ms)" Classes="FormLabel" />
+                <NumericUpDown Grid.Row="1" 
+                               Value="{Binding RequestTimeout}" 
+                               Minimum="5000" 
+                               Maximum="120000" 
+                               Increment="5000"
+                               Classes="GlassTextBox" />
+              </Grid>
+
+              <!-- HTTP Options -->
+              <StackPanel Spacing="12" Margin="0,16,0,0">
+                <CheckBox Content="Follow Redirects" 
+                          IsChecked="{Binding FollowRedirects}" 
+                          Foreground="{StaticResource TextPrimaryBrush}" />
+                <CheckBox Content="Test All HTTP Methods" 
+                          IsChecked="{Binding TestAllHttpMethods}" 
+                          Foreground="{StaticResource TextPrimaryBrush}" />
+                <CheckBox Content="Generate Report" 
+                          IsChecked="{Binding GenerateReport}" 
+                          Foreground="{StaticResource TextPrimaryBrush}" />
+              </StackPanel>
+              
+            </StackPanel>
+          </Border>
+
+          <!-- Vulnerability Types -->
+          <Border Classes="GlassCard">
+            <StackPanel Classes="SectionContainer">
+              <TextBlock Text="Vulnerability Detection" 
+                         Classes="HeadingSmall" 
+                         Margin="0,0,0,16" />
+              
+              <!-- Quick Selection -->
+              <Grid ColumnDefinitions="*,*" Margin="0,0,0,16">
+                <Button Grid.Column="0" 
+                        Content="Select All" 
+                        Classes="GlassButton" />
+                <Button Grid.Column="1" 
+                        Content="Select None" 
+                        Classes="GlassButton" />
+              </Grid>
+
+              <!-- Vulnerability Types List -->
+              <ListBox ItemsSource="{Binding SelectedVulnerabilityTypes}" 
+                       Background="Transparent" 
+                       BorderThickness="0"
+                       MaxHeight="300"
+                       ScrollViewer.VerticalScrollBarVisibility="Auto">
+                <ListBox.ItemTemplate>
+                  <DataTemplate>
+                    <CheckBox Content="{Binding DisplayName}" 
+                              IsChecked="{Binding IsSelected}" 
+                              Foreground="{StaticResource TextPrimaryBrush}" 
+                              Margin="0,4" />
+                  </DataTemplate>
+                </ListBox.ItemTemplate>
+              </ListBox>
+              
+            </StackPanel>
+          </Border>
+
+          <!-- Report Formats -->
+          <Border Classes="GlassCard">
+            <StackPanel Classes="SectionContainer">
+              <TextBlock Text="Report Formats" 
+                         Classes="HeadingSmall" 
+                         Margin="0,0,0,16" />
+              
+              <ItemsControl ItemsSource="{Binding SelectedReportFormats}">
+                <ItemsControl.ItemTemplate>
+                  <DataTemplate>
+                    <CheckBox Content="{Binding DisplayName}" 
+                              IsChecked="{Binding IsSelected}" 
+                              Foreground="{StaticResource TextPrimaryBrush}" 
+                              Margin="0,4" />
+                  </DataTemplate>
+                </ItemsControl.ItemTemplate>
+              </ItemsControl>
+              
+            </StackPanel>
+          </Border>
+
+        </StackPanel>
+
+        <!-- Right Column - Actions & Status -->
+        <StackPanel Grid.Column="1" Spacing="24">
+          
+          <!-- Scan Actions -->
+          <Border Classes="GlassCard">
+            <StackPanel Classes="SectionContainer">
+              <TextBlock Text="Scan Actions" 
+                         Classes="HeadingSmall" 
+                         Margin="0,0,0,16" />
+              
+              <!-- Start Scan Button -->
+              <Button Command="{Binding StartScanCommand}" 
+                      Classes="PrimaryGlassButton" 
+                      Height="50" 
+                      HorizontalContentAlignment="Center"
+                      IsEnabled="{Binding !IsScanning}"
+                      Margin="0,0,0,12">
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                  <Path Data="M8,5.14V19.14L19,12.14L8,5.14Z" 
+                        Classes="IconSmall" 
+                        Fill="White" />
+                  <TextBlock Text="Start Full Scan" 
+                             Foreground="White" 
+                             FontWeight="Medium" />
+                </StackPanel>
+              </Button>
+
+              <!-- Quick Scan Button -->
+              <Button Command="{Binding StartQuickScanCommand}" 
+                      Classes="GlassButton" 
+                      Height="40" 
+                      HorizontalContentAlignment="Center"
+                      IsEnabled="{Binding !IsScanning}">
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                  <Path Data="M15.5,14H20.5L15.5,19V16.5H9.5V14H15.5M4.5,10.5V12.5H6.5V10.5H4.5M3,6V8H21V6H3M3,10V12H21V10H3M9.5,16V18H21V16H9.5Z" 
+                        Classes="IconSmall" />
+                  <TextBlock Text="Quick Scan" FontWeight="Medium" />
+                </StackPanel>
+              </Button>
+
+              <!-- Scan Status -->
+              <Border Classes="Separator" Margin="0,16" />
+              
+              <TextBlock Text="Status" 
+                         Classes="BodySmall" 
+                         Foreground="{StaticResource TextTertiaryBrush}" 
+                         Margin="0,0,0,8" />
+              
+              <!-- Scanning Progress -->
+              <StackPanel IsVisible="{Binding IsScanning}" Spacing="8">
+                <ProgressBar IsIndeterminate="True" 
+                             Classes="GlassProgressBar" 
+                             Height="6" />
+                <TextBlock Text="Scanning in progress..." 
+                           Classes="BodySmall" 
+                           Foreground="{StaticResource InfoBrush}" />
+              </StackPanel>
+
+              <!-- Ready Status -->
+              <TextBlock Text="Ready to scan" 
+                         Classes="BodySmall" 
+                         Foreground="{StaticResource SuccessBrush}" 
+                         IsVisible="{Binding !IsScanning}" />
+              
+            </StackPanel>
+          </Border>
+
+          <!-- Configuration Management -->
+          <Border Classes="GlassCard">
+            <StackPanel Classes="SectionContainer">
+              <TextBlock Text="Configuration" 
+                         Classes="HeadingSmall" 
+                         Margin="0,0,0,16" />
+              
+              <Button Command="{Binding SaveConfigurationCommand}" 
+                      Classes="GlassButton" 
+                      HorizontalContentAlignment="Center" 
+                      Margin="0,0,0,8">
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                  <Path Data="M15,9H5V5H15M12,19A3,3 0 0,1 9,16A3,3 0 0,1 12,13A3,3 0 0,1 15,16A3,3 0 0,1 12,19M17,3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V7L17,3Z" 
+                        Classes="IconSmall" />
+                  <TextBlock Text="Save Configuration" />
+                </StackPanel>
+              </Button>
+
+              <Button Command="{Binding LoadConfigurationCommand}" 
+                      Classes="GlassButton" 
+                      HorizontalContentAlignment="Center">
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                  <Path Data="M6,2C4.89,2 4,2.89 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2H6M18,20H6V4H13V9H18V20Z" 
+                        Classes="IconSmall" />
+                  <TextBlock Text="Load Configuration" />
+                </StackPanel>
+              </Button>
+              
+            </StackPanel>
+          </Border>
+
+          <!-- Scan Summary -->
+          <Border Classes="GlassCard">
+            <StackPanel Classes="SectionContainer">
+              <TextBlock Text="Scan Summary" 
+                         Classes="HeadingSmall" 
+                         Margin="0,0,0,16" />
+              
+              <Grid ColumnDefinitions="*,Auto" Margin="0,0,0,8">
+                <TextBlock Grid.Column="0" Text="Selected Detectors" 
+                           Classes="BodySmall" />
+                <TextBlock Grid.Column="1" 
+                           Text="{Binding SelectedVulnerabilityTypes.Count}" 
+                           Classes="BodySmall" 
+                           FontWeight="Medium" />
+              </Grid>
+
+              <Grid ColumnDefinitions="*,Auto" Margin="0,0,0,8">
+                <TextBlock Grid.Column="0" Text="Report Formats" 
+                           Classes="BodySmall" />
+                <TextBlock Grid.Column="1" 
+                           Text="{Binding SelectedReportFormats.Count}" 
+                           Classes="BodySmall" 
+                           FontWeight="Medium" />
+              </Grid>
+
+              <Grid ColumnDefinitions="*,Auto" Margin="0,0,0,8">
+                <TextBlock Grid.Column="0" Text="Max Requests/sec" 
+                           Classes="BodySmall" />
+                <TextBlock Grid.Column="1" 
+                           Text="{Binding MaxRequestsPerSecond}" 
+                           Classes="BodySmall" 
+                           FontWeight="Medium" />
+              </Grid>
+
+              <Grid ColumnDefinitions="*,Auto">
+                <TextBlock Grid.Column="0" Text="Concurrent Requests" 
+                           Classes="BodySmall" />
+                <TextBlock Grid.Column="1" 
+                           Text="{Binding MaxConcurrentRequests}" 
+                           Classes="BodySmall" 
+                           FontWeight="Medium" />
+              </Grid>
+              
+            </StackPanel>
+          </Border>
+
+        </StackPanel>
+
+      </Grid>
+
+    </StackPanel>
+  </ScrollViewer>
+
+</UserControl>

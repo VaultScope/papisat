@@ -1,0 +1,350 @@
+<UserControl x:Class="VaultScope.Enterprise.WPF.UserControls.ThemeSettingsPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d">
+    
+    <Border Background="{DynamicResource BackgroundSecondaryBrush}"
+            BorderBrush="{DynamicResource BorderLightBrush}"
+            BorderThickness="1"
+            CornerRadius="{DynamicResource CornerRadiusL}"
+            Padding="{DynamicResource SpacingL}">
+        
+        <StackPanel>
+            
+            <!-- Theme Section Header -->
+            <Grid Margin="0,0,0,24">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                
+                <Border Grid.Column="0"
+                        Width="40" Height="40"
+                        Background="{DynamicResource PurpleGradientBrush}"
+                        CornerRadius="10"
+                        Margin="0,0,16,0">
+                    <TextBlock Text="&#xE790;"
+                               FontFamily="{DynamicResource IconFont}"
+                               FontSize="20"
+                               Foreground="White"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"/>
+                </Border>
+                
+                <StackPanel Grid.Column="1" 
+                            VerticalAlignment="Center">
+                    <TextBlock Text="Theme &amp; Appearance"
+                               FontFamily="{DynamicResource PrimaryFont}"
+                               FontSize="{DynamicResource FontSizeXL}"
+                               FontWeight="SemiBold"
+                               Foreground="{DynamicResource TextPrimaryBrush}"/>
+                    <TextBlock Text="Customize the appearance and visual settings"
+                               FontFamily="{DynamicResource PrimaryFont}"
+                               FontSize="{DynamicResource FontSizeS}"
+                               Foreground="{DynamicResource TextSecondaryBrush}"
+                               Margin="0,4,0,0"/>
+                </StackPanel>
+            </Grid>
+            
+            <!-- Theme Options -->
+            <StackPanel Margin="0,0,0,24">
+                <TextBlock Text="Theme Mode"
+                           FontFamily="{DynamicResource PrimaryFont}"
+                           FontSize="{DynamicResource FontSizeM}"
+                           FontWeight="Medium"
+                           Foreground="{DynamicResource TextPrimaryBrush}"
+                           Margin="0,0,0,12"/>
+                
+                <!-- Dark Theme Option -->
+                <Border Background="{DynamicResource BackgroundTertiaryBrush}"
+                        BorderBrush="{DynamicResource BorderLightBrush}"
+                        BorderThickness="1"
+                        CornerRadius="8"
+                        Margin="0,0,0,8">
+                    <RadioButton x:Name="DarkThemeRadio"
+                                 Content=""
+                                 GroupName="ThemeMode"
+                                 Padding="16"
+                                 IsChecked="True"
+                                 Style="{x:Null}"
+                                 Click="ThemeRadio_Click"
+                                 Tag="Dark">
+                        <RadioButton.Template>
+                            <ControlTemplate TargetType="RadioButton">
+                                <Border Background="{TemplateBinding Background}"
+                                        Padding="{TemplateBinding Padding}">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        
+                                        <!-- Theme Preview -->
+                                        <Border Grid.Column="0"
+                                                Width="32" Height="24"
+                                                Background="#1A1A1A"
+                                                BorderBrush="#404040"
+                                                BorderThickness="1"
+                                                CornerRadius="4"
+                                                Margin="0,0,12,0">
+                                            <Border Width="12" Height="8"
+                                                    Background="{DynamicResource PurpleGradientBrush}"
+                                                    CornerRadius="2"
+                                                    HorizontalAlignment="Left"
+                                                    VerticalAlignment="Top"
+                                                    Margin="4"/>
+                                        </Border>
+                                        
+                                        <!-- Theme Info -->
+                                        <StackPanel Grid.Column="1">
+                                            <TextBlock Text="Dark Mode"
+                                                       FontFamily="{DynamicResource PrimaryFont}"
+                                                       FontSize="{DynamicResource FontSizeM}"
+                                                       FontWeight="Medium"
+                                                       Foreground="{DynamicResource TextPrimaryBrush}"/>
+                                            <TextBlock Text="Dark theme with purple accents"
+                                                       FontFamily="{DynamicResource PrimaryFont}"
+                                                       FontSize="{DynamicResource FontSizeS}"
+                                                       Foreground="{DynamicResource TextSecondaryBrush}"/>
+                                        </StackPanel>
+                                        
+                                        <!-- Selection Indicator -->
+                                        <Border Grid.Column="2"
+                                                Width="20" Height="20"
+                                                Background="{DynamicResource PurpleGradientBrush}"
+                                                CornerRadius="10"
+                                                Visibility="{Binding IsChecked, RelativeSource={RelativeSource TemplatedParent}, Converter={DynamicResource BoolToVisibilityConverter}}">
+                                            <TextBlock Text="&#xE73E;"
+                                                       FontFamily="{DynamicResource IconFont}"
+                                                       FontSize="12"
+                                                       Foreground="White"
+                                                       HorizontalAlignment="Center"
+                                                       VerticalAlignment="Center"/>
+                                        </Border>
+                                    </Grid>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="{DynamicResource BackgroundElevatedBrush}"/>
+                                    </Trigger>
+                                    <Trigger Property="IsChecked" Value="True">
+                                        <Setter Property="Background" Value="{DynamicResource BackgroundElevatedBrush}"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </RadioButton.Template>
+                    </RadioButton>
+                </Border>
+                
+                <!-- Light Theme Option -->
+                <Border Background="{DynamicResource BackgroundTertiaryBrush}"
+                        BorderBrush="{DynamicResource BorderLightBrush}"
+                        BorderThickness="1"
+                        CornerRadius="8"
+                        Margin="0,0,0,8">
+                    <RadioButton x:Name="LightThemeRadio"
+                                 Content=""
+                                 GroupName="ThemeMode"
+                                 Padding="16"
+                                 Style="{x:Null}"
+                                 Click="ThemeRadio_Click"
+                                 Tag="Light">
+                        <RadioButton.Template>
+                            <ControlTemplate TargetType="RadioButton">
+                                <Border Background="{TemplateBinding Background}"
+                                        Padding="{TemplateBinding Padding}">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        
+                                        <!-- Theme Preview -->
+                                        <Border Grid.Column="0"
+                                                Width="32" Height="24"
+                                                Background="#FFFFFF"
+                                                BorderBrush="#E5E7EB"
+                                                BorderThickness="1"
+                                                CornerRadius="4"
+                                                Margin="0,0,12,0">
+                                            <Border Width="12" Height="8"
+                                                    Background="{DynamicResource PurpleGradientBrush}"
+                                                    CornerRadius="2"
+                                                    HorizontalAlignment="Left"
+                                                    VerticalAlignment="Top"
+                                                    Margin="4"/>
+                                        </Border>
+                                        
+                                        <!-- Theme Info -->
+                                        <StackPanel Grid.Column="1">
+                                            <TextBlock Text="Light Mode"
+                                                       FontFamily="{DynamicResource PrimaryFont}"
+                                                       FontSize="{DynamicResource FontSizeM}"
+                                                       FontWeight="Medium"
+                                                       Foreground="{DynamicResource TextPrimaryBrush}"/>
+                                            <TextBlock Text="Light theme with purple accents"
+                                                       FontFamily="{DynamicResource PrimaryFont}"
+                                                       FontSize="{DynamicResource FontSizeS}"
+                                                       Foreground="{DynamicResource TextSecondaryBrush}"/>
+                                        </StackPanel>
+                                        
+                                        <!-- Selection Indicator -->
+                                        <Border Grid.Column="2"
+                                                Width="20" Height="20"
+                                                Background="{DynamicResource PurpleGradientBrush}"
+                                                CornerRadius="10"
+                                                Visibility="{Binding IsChecked, RelativeSource={RelativeSource TemplatedParent}, Converter={DynamicResource BoolToVisibilityConverter}}">
+                                            <TextBlock Text="&#xE73E;"
+                                                       FontFamily="{DynamicResource IconFont}"
+                                                       FontSize="12"
+                                                       Foreground="White"
+                                                       HorizontalAlignment="Center"
+                                                       VerticalAlignment="Center"/>
+                                        </Border>
+                                    </Grid>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="{DynamicResource BackgroundElevatedBrush}"/>
+                                    </Trigger>
+                                    <Trigger Property="IsChecked" Value="True">
+                                        <Setter Property="Background" Value="{DynamicResource BackgroundElevatedBrush}"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </RadioButton.Template>
+                    </RadioButton>
+                </Border>
+                
+                <!-- System Theme Option -->
+                <Border Background="{DynamicResource BackgroundTertiaryBrush}"
+                        BorderBrush="{DynamicResource BorderLightBrush}"
+                        BorderThickness="1"
+                        CornerRadius="8">
+                    <RadioButton x:Name="SystemThemeRadio"
+                                 Content=""
+                                 GroupName="ThemeMode"
+                                 Padding="16"
+                                 Style="{x:Null}"
+                                 Click="ThemeRadio_Click"
+                                 Tag="System">
+                        <RadioButton.Template>
+                            <ControlTemplate TargetType="RadioButton">
+                                <Border Background="{TemplateBinding Background}"
+                                        Padding="{TemplateBinding Padding}">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        
+                                        <!-- Theme Preview -->
+                                        <Border Grid.Column="0"
+                                                Width="32" Height="24"
+                                                BorderBrush="{DynamicResource BorderMediumBrush}"
+                                                BorderThickness="1"
+                                                CornerRadius="4"
+                                                Margin="0,0,12,0">
+                                            <Grid>
+                                                <Border Width="16" Height="24"
+                                                        Background="#1A1A1A"
+                                                        HorizontalAlignment="Left"/>
+                                                <Border Width="16" Height="24"
+                                                        Background="#FFFFFF"
+                                                        HorizontalAlignment="Right"/>
+                                                <Border Width="12" Height="8"
+                                                        Background="{DynamicResource PurpleGradientBrush}"
+                                                        CornerRadius="2"
+                                                        HorizontalAlignment="Center"
+                                                        VerticalAlignment="Top"
+                                                        Margin="0,4,0,0"/>
+                                            </Grid>
+                                        </Border>
+                                        
+                                        <!-- Theme Info -->
+                                        <StackPanel Grid.Column="1">
+                                            <TextBlock Text="System Default"
+                                                       FontFamily="{DynamicResource PrimaryFont}"
+                                                       FontSize="{DynamicResource FontSizeM}"
+                                                       FontWeight="Medium"
+                                                       Foreground="{DynamicResource TextPrimaryBrush}"/>
+                                            <TextBlock Text="Follow system theme settings"
+                                                       FontFamily="{DynamicResource PrimaryFont}"
+                                                       FontSize="{DynamicResource FontSizeS}"
+                                                       Foreground="{DynamicResource TextSecondaryBrush}"/>
+                                        </StackPanel>
+                                        
+                                        <!-- Selection Indicator -->
+                                        <Border Grid.Column="2"
+                                                Width="20" Height="20"
+                                                Background="{DynamicResource PurpleGradientBrush}"
+                                                CornerRadius="10"
+                                                Visibility="{Binding IsChecked, RelativeSource={RelativeSource TemplatedParent}, Converter={DynamicResource BoolToVisibilityConverter}}">
+                                            <TextBlock Text="&#xE73E;"
+                                                       FontFamily="{DynamicResource IconFont}"
+                                                       FontSize="12"
+                                                       Foreground="White"
+                                                       HorizontalAlignment="Center"
+                                                       VerticalAlignment="Center"/>
+                                        </Border>
+                                    </Grid>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="{DynamicResource BackgroundElevatedBrush}"/>
+                                    </Trigger>
+                                    <Trigger Property="IsChecked" Value="True">
+                                        <Setter Property="Background" Value="{DynamicResource BackgroundElevatedBrush}"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </RadioButton.Template>
+                    </RadioButton>
+                </Border>
+            </StackPanel>
+            
+            <!-- Theme Info -->
+            <Border Background="{DynamicResource BackgroundTertiaryBrush}"
+                    BorderBrush="{DynamicResource PurplePrimaryBrush}"
+                    BorderThickness="1"
+                    CornerRadius="8"
+                    Padding="16">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <TextBlock Grid.Column="0"
+                               Text="&#xE946;"
+                               FontFamily="{DynamicResource IconFont}"
+                               FontSize="16"
+                               Foreground="{DynamicResource PurplePrimaryBrush}"
+                               Margin="0,0,12,0"
+                               VerticalAlignment="Top"/>
+                    
+                    <StackPanel Grid.Column="1">
+                        <TextBlock Text="Theme Changes Apply Instantly"
+                                   FontFamily="{DynamicResource PrimaryFont}"
+                                   FontSize="{DynamicResource FontSizeS}"
+                                   FontWeight="Medium"
+                                   Foreground="{DynamicResource TextPrimaryBrush}"
+                                   Margin="0,0,0,4"/>
+                        <TextBlock Text="Your preference will be saved and applied automatically when you restart the application."
+                                   FontFamily="{DynamicResource PrimaryFont}"
+                                   FontSize="{DynamicResource FontSizeS}"
+                                   Foreground="{DynamicResource TextSecondaryBrush}"
+                                   TextWrapping="Wrap"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+            
+        </StackPanel>
+    </Border>
+    
+</UserControl>

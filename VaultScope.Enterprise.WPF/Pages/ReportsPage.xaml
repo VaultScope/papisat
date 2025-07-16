@@ -1,0 +1,70 @@
+<UserControl x:Class="VaultScope.Enterprise.WPF.Pages.ReportsPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:uc="clr-namespace:VaultScope.Enterprise.WPF.UserControls"
+             mc:Ignorable="d"
+             d:DesignHeight="600" d:DesignWidth="1000">
+    
+    <StackPanel>
+        
+        <!-- PAGE HEADER -->
+        <uc:PageHeader Title="Reports &amp; Analytics"
+                       Subtitle="View, filter, and export security scan reports"
+                       Breadcrumb="Reports &amp; Analytics"
+                       PrimaryActionText="Export Reports"
+                       SecondaryActionText="Refresh"
+                       ShowPrimaryAction="True"
+                       ShowSecondaryAction="True"/>
+        
+        <!-- EMPTY STATE -->
+        <Border Style="{DynamicResource ContentCardStyle}">
+            <StackPanel HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Margin="48">
+                
+                <!-- EMPTY STATE ICON -->
+                <Border Width="80" Height="80"
+                        Background="{DynamicResource SecondaryBackgroundBrush}"
+                        CornerRadius="40"
+                        Margin="0,0,0,24">
+                    <TextBlock Text="&#xE9F9;"
+                               FontFamily="Segoe MDL2 Assets"
+                               FontSize="32"
+                               Foreground="{DynamicResource TextTertiaryBrush}"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"/>
+                </Border>
+                
+                <!-- EMPTY STATE TITLE -->
+                <TextBlock Text="No Reports Available"
+                           FontFamily="{DynamicResource PrimaryFontFamily}"
+                           FontSize="24"
+                           FontWeight="SemiBold"
+                           Foreground="{DynamicResource TextPrimaryBrush}"
+                           HorizontalAlignment="Center"
+                           Margin="0,0,0,8"/>
+                
+                <!-- EMPTY STATE DESCRIPTION -->
+                <TextBlock Text="Complete your first security scan to generate reports. Reports will appear here once scan data is available."
+                           FontFamily="{DynamicResource PrimaryFontFamily}"
+                           FontSize="14"
+                           FontWeight="Normal"
+                           Foreground="{DynamicResource TextSecondaryBrush}"
+                           HorizontalAlignment="Center"
+                           TextAlignment="Center"
+                           TextWrapping="Wrap"
+                           LineHeight="20"
+                           Margin="0,0,0,32"/>
+                
+                <!-- EMPTY STATE ACTIONS -->
+                <Button Content="Start First Scan"
+                        Style="{DynamicResource PrimaryActionButtonStyle}"/>
+                
+            </StackPanel>
+        </Border>
+        
+    </StackPanel>
+    
+</UserControl>

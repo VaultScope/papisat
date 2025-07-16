@@ -1,0 +1,20 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="VaultScope.UI.App"
+             RequestedThemeVariant="Dark"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib">
+  <Application.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceInclude Source="Themes/DarkTheme.axaml"/>
+      </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary>
+  </Application.Resources>
+  
+  <Application.Styles>
+    <FluentTheme />
+    <StyleInclude Source="Themes/GlassmorphismStyles.axaml"/>
+    <StyleInclude Source="Themes/Typography.axaml"/>
+    <StyleInclude Source="Themes/CommonStyles.axaml"/>
+  </Application.Styles>
+</Application>

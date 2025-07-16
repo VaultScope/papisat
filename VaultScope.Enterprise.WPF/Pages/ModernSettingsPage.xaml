@@ -1,0 +1,389 @@
+<Page x:Class="VaultScope.Enterprise.WPF.Pages.ModernSettingsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:uc="clr-namespace:VaultScope.Enterprise.WPF.UserControls"
+      mc:Ignorable="d"
+      Title="Settings &amp; Configuration">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Styles/ModernCards.xaml"/>
+                <ResourceDictionary Source="/Styles/ModernInputs.xaml"/>
+                <ResourceDictionary Source="/Styles/ModernNavigationButtons.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto"
+                  HorizontalScrollBarVisibility="Disabled"
+                  Background="{DynamicResource BackgroundPrimaryBrush}">
+        
+        <Grid Margin="32">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            
+            <!-- PAGE HEADER -->
+            <Grid Grid.Row="0" 
+                  Margin="0,0,0,40">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                
+                <StackPanel Grid.Column="0">
+                    <TextBlock Text="Settings &amp; Configuration"
+                               FontFamily="{DynamicResource PrimaryFont}"
+                               FontSize="36"
+                               FontWeight="SemiBold"
+                               Foreground="{DynamicResource TextPrimaryBrush}"
+                               Margin="0,0,0,8"/>
+                    <TextBlock Text="Customize your VaultScope Enterprise experience and security preferences"
+                               FontFamily="{DynamicResource PrimaryFont}"
+                               FontSize="16"
+                               Foreground="{DynamicResource TextSecondaryBrush}"/>
+                </StackPanel>
+                
+                <StackPanel Grid.Column="1" 
+                            Orientation="Horizontal"
+                            VerticalAlignment="Center">
+                    <Button Content="Reset to Defaults"
+                            Style="{DynamicResource SecondaryActionButtonStyle}"
+                            Margin="0,0,16,0"/>
+                    <Button Content="Save Changes"
+                            Style="{DynamicResource PrimaryActionButtonStyle}"/>
+                </StackPanel>
+            </Grid>
+            
+            <!-- SETTINGS SECTIONS -->
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                
+                <!-- LEFT COLUMN - MAIN SETTINGS -->
+                <StackPanel Grid.Column="0" 
+                            Margin="0,0,32,0">
+                    
+                    <!-- THEME SETTINGS -->
+                    <uc:ThemeSettingsPanel Margin="0,0,0,32"/>
+                    
+                    <!-- SECURITY SETTINGS -->
+                    <Border Background="#FF2D2D2D"
+                            BorderBrush="#FF404040"
+                            BorderThickness="1"
+                            CornerRadius="8"
+                            Padding="24"
+                            Margin="0,0,0,24">
+                        <StackPanel>
+                            
+                            <!-- Security Header -->
+                            <Grid Margin="0,0,0,32">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                
+                                <Border Grid.Column="0"
+                                        Width="40" Height="40"
+                                        Background="#FFFF1744"
+                                        CornerRadius="8"
+                                        Margin="0,0,16,0">
+                                    <TextBlock Text="&#xE72E;"
+                                               FontFamily="Segoe MDL2 Assets"
+                                               FontSize="18"
+                                               Foreground="White"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"/>
+                                </Border>
+                                
+                                <StackPanel Grid.Column="1" 
+                                            VerticalAlignment="Center">
+                                    <TextBlock Text="Security &amp; Privacy"
+                                               FontFamily="{DynamicResource PrimaryFont}"
+                                               FontSize="20"
+                                               FontWeight="SemiBold"
+                                               Foreground="{DynamicResource TextPrimaryBrush}"
+                                               Margin="0,0,0,4"/>
+                                    <TextBlock Text="Configure security scanning and privacy settings"
+                                               FontFamily="{DynamicResource PrimaryFont}"
+                                               FontSize="14"
+                                               Foreground="{DynamicResource TextSecondaryBrush}"/>
+                                </StackPanel>
+                            </Grid>
+                            
+                            <!-- Scan Settings -->
+                            <StackPanel Margin="0,0,0,32">
+                                <TextBlock Text="Automatic Scanning"
+                                           FontFamily="{DynamicResource PrimaryFont}"
+                                           FontSize="16"
+                                           FontWeight="Medium"
+                                           Foreground="{DynamicResource TextPrimaryBrush}"
+                                           Margin="0,0,0,16"/>
+                                
+                                <CheckBox Content="Enable automatic vulnerability scanning"
+                                          Style="{DynamicResource InputCheckBoxStyle}"
+                                          IsChecked="True"
+                                          Margin="0,0,0,12"/>
+                                
+                                <CheckBox Content="Scan on application startup"
+                                          Style="{DynamicResource InputCheckBoxStyle}"
+                                          IsChecked="False"
+                                          Margin="0,0,0,12"/>
+                                
+                                <CheckBox Content="Enable real-time protection"
+                                          Style="{DynamicResource InputCheckBoxStyle}"
+                                          IsChecked="True"/>
+                            </StackPanel>
+                            
+                            <!-- Scan Frequency -->
+                            <StackPanel Margin="0,0,0,32">
+                                <TextBlock Text="Scan Frequency"
+                                           FontFamily="{DynamicResource PrimaryFont}"
+                                           FontSize="16"
+                                           FontWeight="Medium"
+                                           Foreground="{DynamicResource TextPrimaryBrush}"
+                                           Margin="0,0,0,12"/>
+                                
+                                <ComboBox Style="{DynamicResource InputComboBoxStyle}"
+                                          SelectedIndex="1"
+                                          Margin="0,0,0,8">
+                                    <ComboBoxItem Content="Every 15 minutes"/>
+                                    <ComboBoxItem Content="Every 30 minutes"/>
+                                    <ComboBoxItem Content="Every hour"/>
+                                    <ComboBoxItem Content="Every 6 hours"/>
+                                    <ComboBoxItem Content="Daily"/>
+                                </ComboBox>
+                                
+                                <TextBlock Text="More frequent scans provide better protection but may impact system performance"
+                                           FontFamily="{DynamicResource PrimaryFont}"
+                                           FontSize="12"
+                                           Foreground="{DynamicResource TextTertiaryBrush}"
+                                           TextWrapping="Wrap"/>
+                            </StackPanel>
+                            
+                            <!-- API Keys -->
+                            <StackPanel>
+                                <TextBlock Text="API Configuration"
+                                           FontFamily="{DynamicResource PrimaryFont}"
+                                           FontSize="16"
+                                           FontWeight="Medium"
+                                           Foreground="{DynamicResource TextPrimaryBrush}"
+                                           Margin="0,0,0,16"/>
+                                
+                                <TextBlock Text="API Key"
+                                           FontFamily="{DynamicResource PrimaryFont}"
+                                           FontSize="14"
+                                           FontWeight="Medium"
+                                           Foreground="{DynamicResource TextPrimaryBrush}"
+                                           Margin="0,0,0,8"/>
+                                
+                                <PasswordBox Height="44"
+                                             FontFamily="{DynamicResource PrimaryFont}"
+                                             FontSize="14"
+                                             Password="••••••••••••••••"
+                                             Margin="0,0,0,16"/>
+                                
+                                <TextBlock Text="API Endpoint URL"
+                                           FontFamily="{DynamicResource PrimaryFont}"
+                                           FontSize="14"
+                                           FontWeight="Medium"
+                                           Foreground="{DynamicResource TextPrimaryBrush}"
+                                           Margin="0,0,0,8"/>
+                                
+                                <TextBox Style="{DynamicResource InputTextBoxStyle}"
+                                         Text="https://api.vaultscope.enterprise.local"/>
+                            </StackPanel>
+                            
+                        </StackPanel>
+                    </Border>
+                    
+                    <!-- NOTIFICATION SETTINGS -->
+                    <Border Style="{DynamicResource ModernCardStyle}">
+                        <StackPanel>
+                            
+                            <!-- Notifications Header -->
+                            <Grid Margin="0,0,0,24">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                
+                                <Border Grid.Column="0"
+                                        Style="{DynamicResource ModernIconBackgroundStyle}"
+                                        Background="{DynamicResource InfoBrush}">
+                                    <TextBlock Text="&#xE7E7;"
+                                               Style="{DynamicResource ModernIconTextStyle}"/>
+                                </Border>
+                                
+                                <StackPanel Grid.Column="1" 
+                                            VerticalAlignment="Center">
+                                    <TextBlock Text="Notifications &amp; Alerts"
+                                               Style="{DynamicResource ModernCardSubheaderStyle}"/>
+                                    <TextBlock Text="Configure how you receive security alerts and updates"
+                                               Style="{DynamicResource ModernCardDescriptionStyle}"/>
+                                </StackPanel>
+                            </Grid>
+                            
+                            <!-- Notification Options -->
+                            <StackPanel>
+                                <CheckBox Content="Show desktop notifications for critical threats"
+                                          Style="{DynamicResource ModernCheckBoxStyle}"
+                                          IsChecked="True"/>
+                                
+                                <CheckBox Content="Email notifications for scan completion"
+                                          Style="{DynamicResource ModernCheckBoxStyle}"
+                                          IsChecked="False"/>
+                                
+                                <CheckBox Content="Sound alerts for high-priority vulnerabilities"
+                                          Style="{DynamicResource ModernCheckBoxStyle}"
+                                          IsChecked="True"/>
+                                
+                                <CheckBox Content="Weekly security summary reports"
+                                          Style="{DynamicResource ModernCheckBoxStyle}"
+                                          IsChecked="True"/>
+                            </StackPanel>
+                            
+                        </StackPanel>
+                    </Border>
+                    
+                </StackPanel>
+                
+                <!-- RIGHT COLUMN - SYSTEM INFO & QUICK ACTIONS -->
+                <StackPanel Grid.Column="1">
+                    
+                    <!-- SYSTEM STATUS -->
+                    <Border Style="{DynamicResource ModernCardStyle}">
+                        <StackPanel>
+                            <TextBlock Text="System Status"
+                                       Style="{DynamicResource ModernCardSubheaderStyle}"/>
+                            
+                            <!-- Status Items -->
+                            <Grid Margin="0,0,0,16">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                
+                                <TextBlock Grid.Column="0"
+                                           Text="Real-time Protection"
+                                           Style="{DynamicResource ModernCardContentStyle}"/>
+                                
+                                <Border Grid.Column="1"
+                                        Style="{DynamicResource SuccessStatusBadgeStyle}">
+                                    <TextBlock Text="Active"
+                                               Style="{DynamicResource StatusBadgeTextStyle}"/>
+                                </Border>
+                            </Grid>
+                            
+                            <Grid Margin="0,0,0,16">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                
+                                <TextBlock Grid.Column="0"
+                                           Text="Database Connection"
+                                           Style="{DynamicResource ModernCardContentStyle}"/>
+                                
+                                <Border Grid.Column="1"
+                                        Style="{DynamicResource SuccessStatusBadgeStyle}">
+                                    <TextBlock Text="Connected"
+                                               Style="{DynamicResource StatusBadgeTextStyle}"/>
+                                </Border>
+                            </Grid>
+                            
+                            <Grid Margin="0,0,0,16">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                
+                                <TextBlock Grid.Column="0"
+                                           Text="Last Full Scan"
+                                           Style="{DynamicResource ModernCardContentStyle}"/>
+                                
+                                <TextBlock Grid.Column="1"
+                                           Text="3 hours ago"
+                                           Style="{DynamicResource ModernCardDescriptionStyle}"
+                                           Margin="0"/>
+                            </Grid>
+                            
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                
+                                <TextBlock Grid.Column="0"
+                                           Text="Version"
+                                           Style="{DynamicResource ModernCardContentStyle}"/>
+                                
+                                <TextBlock Grid.Column="1"
+                                           Text="1.0.0"
+                                           Style="{DynamicResource ModernCardDescriptionStyle}"
+                                           Margin="0"/>
+                            </Grid>
+                            
+                        </StackPanel>
+                    </Border>
+                    
+                    <!-- QUICK ACTIONS -->
+                    <Border Style="{DynamicResource ModernCardStyle}">
+                        <StackPanel>
+                            <TextBlock Text="Quick Actions"
+                                       Style="{DynamicResource ModernCardSubheaderStyle}"/>
+                            
+                            <Button Content="Run Full System Scan"
+                                    Style="{DynamicResource ModernPrimaryActionButtonStyle}"
+                                    HorizontalAlignment="Stretch"
+                                    Margin="0,0,0,12"/>
+                            
+                            <Button Content="Update Vulnerability Database"
+                                    Style="{DynamicResource ModernSecondaryActionButtonStyle}"
+                                    HorizontalAlignment="Stretch"
+                                    Margin="0,0,0,12"/>
+                            
+                            <Button Content="Export Security Report"
+                                    Style="{DynamicResource ModernSecondaryActionButtonStyle}"
+                                    HorizontalAlignment="Stretch"
+                                    Margin="0,0,0,12"/>
+                            
+                            <Button Content="Clear Scan History"
+                                    Style="{DynamicResource ModernSecondaryActionButtonStyle}"
+                                    HorizontalAlignment="Stretch"/>
+                        </StackPanel>
+                    </Border>
+                    
+                    <!-- SUPPORT INFO -->
+                    <Border Style="{DynamicResource ModernNotificationCardStyle}">
+                        <StackPanel>
+                            <TextBlock Text="Need Help?"
+                                       Style="{DynamicResource ModernCardContentStyle}"
+                                       FontWeight="Medium"
+                                       Margin="0,0,0,8"/>
+                            
+                            <TextBlock Text="Access our comprehensive documentation, video tutorials, and community support resources."
+                                       Style="{DynamicResource ModernCardDescriptionStyle}"
+                                       Margin="0,0,0,12"/>
+                            
+                            <Button Content="View Documentation"
+                                    Style="{DynamicResource ModernSecondaryActionButtonStyle}"
+                                    HorizontalAlignment="Left"
+                                    Padding="12,8"/>
+                        </StackPanel>
+                    </Border>
+                    
+                </StackPanel>
+            </Grid>
+            
+        </Grid>
+    </ScrollViewer>
+    
+</Page>

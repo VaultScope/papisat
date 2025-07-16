@@ -1,0 +1,183 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- VAULTSCOPE ICON SYSTEM -->
+    <!-- Using Lucide-inspired icons with proper Unicode mappings -->
+
+    <!-- NAVIGATION ICONS -->
+    <sys:String x:Key="IconHome" xmlns:sys="clr-namespace:System;assembly=mscorlib">&#xE80F;</sys:String>
+    <sys:String x:Key="IconDashboard" xmlns:sys="clr-namespace:System;assembly=mscorlib">&#xE80F;</sys:String>
+    <sys:String x:Key="IconShield" xmlns:sys="clr-namespace:System;assembly=mscorlib">&#xE72E;</sys:String>
+    <sys:String x:Key="IconScan" xmlns:sys="clr-namespace:System;assembly=mscorlib">&#xE72C;</sys:String>
+    <sys:String x:Key="IconReports" xmlns:sys="clr-namespace:System;assembly=mscorlib">&#xE9F9;</sys:String>
+    <sys:String x:Key="IconSettings" xmlns:sys="clr-namespace:System;assembly=mscorlib">&#xE713;</sys:String>
+    <sys:String x:Key="IconDatabase" xmlns:sys="clr-namespace:System;assembly=mscorlib">&#xE8F1;</sys:String>
+    <sys:String x:Key="IconHistory" xmlns:sys="clr-namespace:System;assembly=mscorlib">&#xE81C;</sys:String>
+
+    <!-- ACTION ICONS -->
+    <sys:String x:Key="IconPlay" xmlns:sys="clr-namespace:System;assembly=mscorlib">&#xE768;</sys:String>
+    <sys:String x:Key="IconPause" xmlns:sys="clr-namespace:System;assembly=mscorlib">&#xE769;</sys:String>
+    <sys:String x:Key="IconStop" xmlns:sys="clr-namespace:System;assembly=mscorlib">&#xE71A;</sys:String>
+    <sys:String x:Key="IconRefresh" xmlns:sys="clr-namespace:System;assembly=mscorlib">&#xE72C;</sys:String>
+    <sys:String x:Key="IconDownload" xmlns:sys="clr-namespace:System;assembly=mscorlib">&#xE896;</sys:String>
+    <sys:String x:Key="IconUpload" xmlns:sys="clr-namespace:System;assembly=mscorlib">&#xE898;</sys:String>
+    <sys:String x:Key="IconSearch" xmlns:sys="clr-namespace:System;assembly=mscorlib">&#xE721;</sys:String>
+    <sys:String x:Key="IconFilter" xmlns:sys="clr-namespace:System;assembly=mscorlib">&#xE16E;</sys:String>
+
+    <!-- STATUS ICONS -->
+    <sys:String x:Key="IconCheck" xmlns:sys="clr-namespace:System;assembly=mscorlib">&#xE73E;</sys:String>
+    <sys:String x:Key="IconWarning" xmlns:sys="clr-namespace:System;assembly=mscorlib">&#xE7BA;</sys:String>
+    <sys:String x:Key="IconError" xmlns:sys="clr-namespace:System;assembly=mscorlib">&#xE783;</sys:String>
+    <sys:String x:Key="IconInfo" xmlns:sys="clr-namespace:System;assembly=mscorlib">&#xE946;</sys:String>
+    <sys:String x:Key="IconAlert" xmlns:sys="clr-namespace:System;assembly=mscorlib">&#xE7E7;</sys:String>
+    <sys:String x:Key="IconSuccess" xmlns:sys="clr-namespace:System;assembly=mscorlib">&#xE8FB;</sys:String>
+
+    <!-- SECURITY ICONS -->
+    <sys:String x:Key="IconLock" xmlns:sys="clr-namespace:System;assembly=mscorlib">&#xE72E;</sys:String>
+    <sys:String x:Key="IconUnlock" xmlns:sys="clr-namespace:System;assembly=mscorlib">&#xE785;</sys:String>
+    <sys:String x:Key="IconKey" xmlns:sys="clr-namespace:System;assembly=mscorlib">&#xE8D7;</sys:String>
+    <sys:String x:Key="IconFingerprint" xmlns:sys="clr-namespace:System;assembly=mscorlib">&#xE928;</sys:String>
+    <sys:String x:Key="IconEye" xmlns:sys="clr-namespace:System;assembly=mscorlib">&#xE890;</sys:String>
+    <sys:String x:Key="IconEyeOff" xmlns:sys="clr-namespace:System;assembly=mscorlib">&#xED1A;</sys:String>
+
+    <!-- SCAN TYPE ICONS -->
+    <sys:String x:Key="IconNetwork" xmlns:sys="clr-namespace:System;assembly=mscorlib">&#xE968;</sys:String>
+    <sys:String x:Key="IconCloud" xmlns:sys="clr-namespace:System;assembly=mscorlib">&#xE753;</sys:String>
+    <sys:String x:Key="IconServer" xmlns:sys="clr-namespace:System;assembly=mscorlib">&#xE8B4;</sys:String>
+    <sys:String x:Key="IconCode" xmlns:sys="clr-namespace:System;assembly=mscorlib">&#xE943;</sys:String>
+    <sys:String x:Key="IconBug" xmlns:sys="clr-namespace:System;assembly=mscorlib">&#xE825;</sys:String>
+    <sys:String x:Key="IconActivity" xmlns:sys="clr-namespace:System;assembly=mscorlib">&#xE81C;</sys:String>
+
+    <!-- UI ICONS -->
+    <sys:String x:Key="IconMenu" xmlns:sys="clr-namespace:System;assembly=mscorlib">&#xE700;</sys:String>
+    <sys:String x:Key="IconClose" xmlns:sys="clr-namespace:System;assembly=mscorlib">&#xE8BB;</sys:String>
+    <sys:String x:Key="IconMinimize" xmlns:sys="clr-namespace:System;assembly=mscorlib">&#xE921;</sys:String>
+    <sys:String x:Key="IconMaximize" xmlns:sys="clr-namespace:System;assembly=mscorlib">&#xE922;</sys:String>
+    <sys:String x:Key="IconBack" xmlns:sys="clr-namespace:System;assembly=mscorlib">&#xE72B;</sys:String>
+    <sys:String x:Key="IconForward" xmlns:sys="clr-namespace:System;assembly=mscorlib">&#xE72A;</sys:String>
+    <sys:String x:Key="IconUp" xmlns:sys="clr-namespace:System;assembly=mscorlib">&#xE70E;</sys:String>
+    <sys:String x:Key="IconDown" xmlns:sys="clr-namespace:System;assembly=mscorlib">&#xE70D;</sys:String>
+    <sys:String x:Key="IconLeft" xmlns:sys="clr-namespace:System;assembly=mscorlib">&#xE76B;</sys:String>
+    <sys:String x:Key="IconRight" xmlns:sys="clr-namespace:System;assembly=mscorlib">&#xE76C;</sys:String>
+
+    <!-- THEME ICONS -->
+    <sys:String x:Key="IconSun" xmlns:sys="clr-namespace:System;assembly=mscorlib">&#xE706;</sys:String>
+    <sys:String x:Key="IconMoon" xmlns:sys="clr-namespace:System;assembly=mscorlib">&#xE708;</sys:String>
+    <sys:String x:Key="IconPalette" xmlns:sys="clr-namespace:System;assembly=mscorlib">&#xE790;</sys:String>
+    <sys:String x:Key="IconMonitor" xmlns:sys="clr-namespace:System;assembly=mscorlib">&#xE7F4;</sys:String>
+
+    <!-- ICON STYLES -->
+    
+    <!-- Standard icon style -->
+    <Style x:Key="IconStyle" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="{DynamicResource IconFont}"/>
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="Foreground" Value="{DynamicResource TextSecondaryBrush}"/>
+    </Style>
+
+    <!-- Small icon style (inline) -->
+    <Style x:Key="IconSmallStyle" TargetType="TextBlock" BasedOn="{StaticResource IconStyle}">
+        <Setter Property="FontSize" Value="14"/>
+    </Style>
+
+    <!-- Medium icon style (buttons) -->
+    <Style x:Key="IconMediumStyle" TargetType="TextBlock" BasedOn="{StaticResource IconStyle}">
+        <Setter Property="FontSize" Value="18"/>
+    </Style>
+
+    <!-- Large icon style (navigation) -->
+    <Style x:Key="IconLargeStyle" TargetType="TextBlock" BasedOn="{StaticResource IconStyle}">
+        <Setter Property="FontSize" Value="20"/>
+    </Style>
+
+    <!-- Extra large icon style (headers) -->
+    <Style x:Key="IconXLargeStyle" TargetType="TextBlock" BasedOn="{StaticResource IconStyle}">
+        <Setter Property="FontSize" Value="24"/>
+    </Style>
+
+    <!-- Primary colored icon -->
+    <Style x:Key="IconPrimaryStyle" TargetType="TextBlock" BasedOn="{StaticResource IconStyle}">
+        <Setter Property="Foreground" Value="{DynamicResource PurplePrimaryBrush}"/>
+    </Style>
+
+    <!-- Success colored icon -->
+    <Style x:Key="IconSuccessStyle" TargetType="TextBlock" BasedOn="{StaticResource IconStyle}">
+        <Setter Property="Foreground" Value="{DynamicResource SuccessBrush}"/>
+    </Style>
+
+    <!-- Warning colored icon -->
+    <Style x:Key="IconWarningStyle" TargetType="TextBlock" BasedOn="{StaticResource IconStyle}">
+        <Setter Property="Foreground" Value="{DynamicResource WarningBrush}"/>
+    </Style>
+
+    <!-- Error colored icon -->
+    <Style x:Key="IconErrorStyle" TargetType="TextBlock" BasedOn="{StaticResource IconStyle}">
+        <Setter Property="Foreground" Value="{DynamicResource ErrorBrush}"/>
+    </Style>
+
+    <!-- White icon (for dark backgrounds) -->
+    <Style x:Key="IconWhiteStyle" TargetType="TextBlock" BasedOn="{StaticResource IconStyle}">
+        <Setter Property="Foreground" Value="White"/>
+    </Style>
+
+    <!-- ICON BUTTON TEMPLATE -->
+    <ControlTemplate x:Key="IconButtonTemplate" TargetType="Button">
+        <Border Name="Border"
+                Background="{TemplateBinding Background}"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}"
+                CornerRadius="{DynamicResource CornerRadiusM}"
+                Padding="{TemplateBinding Padding}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                
+                <!-- Icon -->
+                <TextBlock Grid.Column="0"
+                           Text="{TemplateBinding Tag}"
+                           Style="{DynamicResource IconMediumStyle}"
+                           Foreground="{TemplateBinding Foreground}"
+                           Margin="0,0,8,0"/>
+                
+                <!-- Text -->
+                <ContentPresenter Grid.Column="1"
+                                  VerticalAlignment="Center"/>
+            </Grid>
+        </Border>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter TargetName="Border" Property="Background" Value="{DynamicResource BackgroundElevatedBrush}"/>
+            </Trigger>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter TargetName="Border" Property="Background" Value="{DynamicResource BackgroundSecondaryBrush}"/>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <!-- ICON-ONLY BUTTON TEMPLATE -->
+    <ControlTemplate x:Key="IconOnlyButtonTemplate" TargetType="Button">
+        <Border Name="Border"
+                Background="{TemplateBinding Background}"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}"
+                CornerRadius="{DynamicResource CornerRadiusM}"
+                Width="40" Height="40">
+            <TextBlock Text="{TemplateBinding Tag}"
+                       Style="{DynamicResource IconMediumStyle}"
+                       Foreground="{TemplateBinding Foreground}"/>
+        </Border>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter TargetName="Border" Property="Background" Value="{DynamicResource BackgroundElevatedBrush}"/>
+            </Trigger>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter TargetName="Border" Property="Background" Value="{DynamicResource BackgroundSecondaryBrush}"/>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+</ResourceDictionary>

@@ -1,0 +1,74 @@
+<UserControl x:Class="VaultScope.Enterprise.WPF.UserControls.StatisticsCard"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             Width="240" Height="120">
+    
+    <!-- EXACT CARD DIMENSIONS: 240x120 PIXELS -->
+    <Border Background="{DynamicResource CardBackgroundBrush}"
+            CornerRadius="8"
+            Effect="{DynamicResource CardShadowEffect}">
+        
+        <Grid Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            
+            <!-- ICON AND TITLE ROW -->
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                
+                <!-- ICON -->
+                <TextBlock x:Name="CardIcon"
+                           Grid.Column="0"
+                           Text="&#xE9F9;"
+                           FontFamily="Segoe MDL2 Assets"
+                           FontSize="20"
+                           Foreground="{DynamicResource InfoBlueBrush}"
+                           VerticalAlignment="Center"/>
+                
+                <!-- TITLE -->
+                <TextBlock x:Name="CardTitle"
+                           Grid.Column="1"
+                           Text="Total Scans"
+                           FontFamily="{DynamicResource PrimaryFontFamily}"
+                           FontSize="14"
+                           FontWeight="Medium"
+                           Foreground="{DynamicResource TextPrimaryBrush}"
+                           VerticalAlignment="Center"
+                           Margin="12,0,0,0"/>
+            </Grid>
+            
+            <!-- VALUE ROW -->
+            <TextBlock x:Name="CardValue"
+                       Grid.Row="1"
+                       Text="0"
+                       FontFamily="{DynamicResource PrimaryFontFamily}"
+                       FontSize="32"
+                       FontWeight="SemiBold"
+                       Foreground="{DynamicResource TextPrimaryBrush}"
+                       VerticalAlignment="Center"
+                       Margin="0,8,0,4"/>
+            
+            <!-- DESCRIPTION ROW -->
+            <TextBlock x:Name="CardDescription"
+                       Grid.Row="2"
+                       Text="security scans"
+                       FontFamily="{DynamicResource PrimaryFontFamily}"
+                       FontSize="12"
+                       FontWeight="Normal"
+                       Foreground="{DynamicResource TextSecondaryBrush}"
+                       VerticalAlignment="Center"/>
+            
+        </Grid>
+        
+    </Border>
+    
+</UserControl>

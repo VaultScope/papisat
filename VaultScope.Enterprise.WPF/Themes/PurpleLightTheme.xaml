@@ -1,0 +1,133 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- PURPLE BRAND COLORS (Same across themes) -->
+    <Color x:Key="PurplePrimary">#8B5CF6</Color>
+    <Color x:Key="PurpleSecondary">#A855F7</Color>
+    <Color x:Key="PurpleAccent">#7C3AED</Color>
+    <Color x:Key="PurpleDark">#6B46C1</Color>
+    <Color x:Key="PurpleLight">#EDE9FE</Color>
+
+    <!-- LIGHT THEME COLORS -->
+    <Color x:Key="BackgroundPrimary">#FFFFFF</Color>
+    <Color x:Key="BackgroundSecondary">#F8F9FA</Color>
+    <Color x:Key="BackgroundTertiary">#F3F4F6</Color>
+    <Color x:Key="BackgroundElevated">#FFFFFF</Color>
+    
+    <Color x:Key="TextPrimary">#1A1A1A</Color>
+    <Color x:Key="TextSecondary">#6C757D</Color>
+    <Color x:Key="TextTertiary">#9CA3AF</Color>
+    <Color x:Key="TextDisabled">#D1D5DB</Color>
+    
+    <Color x:Key="BorderLight">#E5E7EB</Color>
+    <Color x:Key="BorderMedium">#D1D5DB</Color>
+    <Color x:Key="BorderDark">#9CA3AF</Color>
+    
+    <!-- STATUS COLORS (Adjusted for light theme) -->
+    <Color x:Key="Success">#059669</Color>
+    <Color x:Key="Warning">#D97706</Color>
+    <Color x:Key="Error">#DC2626</Color>
+    <Color x:Key="Info">#4F46E5</Color>
+    
+    <!-- SOLID COLOR BRUSHES -->
+    <SolidColorBrush x:Key="PurplePrimaryBrush" Color="{DynamicResource PurplePrimary}"/>
+    <SolidColorBrush x:Key="PurpleSecondaryBrush" Color="{DynamicResource PurpleSecondary}"/>
+    <SolidColorBrush x:Key="PurpleAccentBrush" Color="{DynamicResource PurpleAccent}"/>
+    <SolidColorBrush x:Key="PurpleDarkBrush" Color="{DynamicResource PurpleDark}"/>
+    <SolidColorBrush x:Key="PurpleLightBrush" Color="{DynamicResource PurpleLight}"/>
+    
+    <SolidColorBrush x:Key="BackgroundPrimaryBrush" Color="{DynamicResource BackgroundPrimary}"/>
+    <SolidColorBrush x:Key="BackgroundSecondaryBrush" Color="{DynamicResource BackgroundSecondary}"/>
+    <SolidColorBrush x:Key="BackgroundTertiaryBrush" Color="{DynamicResource BackgroundTertiary}"/>
+    <SolidColorBrush x:Key="BackgroundElevatedBrush" Color="{DynamicResource BackgroundElevated}"/>
+    
+    <SolidColorBrush x:Key="TextPrimaryBrush" Color="{DynamicResource TextPrimary}"/>
+    <SolidColorBrush x:Key="TextSecondaryBrush" Color="{DynamicResource TextSecondary}"/>
+    <SolidColorBrush x:Key="TextTertiaryBrush" Color="{DynamicResource TextTertiary}"/>
+    <SolidColorBrush x:Key="TextDisabledBrush" Color="{DynamicResource TextDisabled}"/>
+    
+    <SolidColorBrush x:Key="BorderLightBrush" Color="{DynamicResource BorderLight}"/>
+    <SolidColorBrush x:Key="BorderMediumBrush" Color="{DynamicResource BorderMedium}"/>
+    <SolidColorBrush x:Key="BorderDarkBrush" Color="{DynamicResource BorderDark}"/>
+    
+    <SolidColorBrush x:Key="SuccessBrush" Color="{DynamicResource Success}"/>
+    <SolidColorBrush x:Key="WarningBrush" Color="{DynamicResource Warning}"/>
+    <SolidColorBrush x:Key="ErrorBrush" Color="{DynamicResource Error}"/>
+    <SolidColorBrush x:Key="InfoBrush" Color="{DynamicResource Info}"/>
+    
+    <!-- GRADIENT BRUSHES -->
+    <LinearGradientBrush x:Key="PurpleGradientBrush" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Color="{DynamicResource PurplePrimary}" Offset="0"/>
+        <GradientStop Color="{DynamicResource PurpleSecondary}" Offset="1"/>
+    </LinearGradientBrush>
+    
+    <LinearGradientBrush x:Key="PurpleGradientHoverBrush" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Color="{DynamicResource PurpleAccent}" Offset="0"/>
+        <GradientStop Color="{DynamicResource PurplePrimary}" Offset="1"/>
+    </LinearGradientBrush>
+    
+    <LinearGradientBrush x:Key="PurpleGradientPressedBrush" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Color="{DynamicResource PurpleDark}" Offset="0"/>
+        <GradientStop Color="{DynamicResource PurpleAccent}" Offset="1"/>
+    </LinearGradientBrush>
+    
+    <!-- SHADOW EFFECTS (Lighter for light theme) -->
+    <DropShadowEffect x:Key="CardShadow" 
+                      Color="Black" 
+                      Direction="270" 
+                      ShadowDepth="2" 
+                      BlurRadius="12" 
+                      Opacity="0.08"/>
+    
+    <DropShadowEffect x:Key="ButtonShadow" 
+                      Color="Black" 
+                      Direction="270" 
+                      ShadowDepth="1" 
+                      BlurRadius="4" 
+                      Opacity="0.05"/>
+    
+    <DropShadowEffect x:Key="ElevatedShadow" 
+                      Color="Black" 
+                      Direction="270" 
+                      ShadowDepth="4" 
+                      BlurRadius="16" 
+                      Opacity="0.1"/>
+    
+    <!-- TYPOGRAPHY -->
+    <FontFamily x:Key="PrimaryFont">Segoe UI</FontFamily>
+    <FontFamily x:Key="IconFont">Segoe MDL2 Assets</FontFamily>
+    
+    <system:Double x:Key="FontSizeXS" xmlns:system="clr-namespace:System;assembly=mscorlib">11</system:Double>
+    <system:Double x:Key="FontSizeS" xmlns:system="clr-namespace:System;assembly=mscorlib">12</system:Double>
+    <system:Double x:Key="FontSizeM" xmlns:system="clr-namespace:System;assembly=mscorlib">14</system:Double>
+    <system:Double x:Key="FontSizeL" xmlns:system="clr-namespace:System;assembly=mscorlib">16</system:Double>
+    <system:Double x:Key="FontSizeXL" xmlns:system="clr-namespace:System;assembly=mscorlib">18</system:Double>
+    <system:Double x:Key="FontSizeXXL" xmlns:system="clr-namespace:System;assembly=mscorlib">24</system:Double>
+    <system:Double x:Key="FontSizeXXXL" xmlns:system="clr-namespace:System;assembly=mscorlib">32</system:Double>
+    
+    <!-- SPACING SYSTEM (8px base) -->
+    <Thickness x:Key="SpacingXS">4</Thickness>
+    <Thickness x:Key="SpacingS">8</Thickness>
+    <Thickness x:Key="SpacingM">16</Thickness>
+    <Thickness x:Key="SpacingL">24</Thickness>
+    <Thickness x:Key="SpacingXL">32</Thickness>
+    <Thickness x:Key="SpacingXXL">48</Thickness>
+    
+    <!-- CORNER RADIUS -->
+    <CornerRadius x:Key="CornerRadiusS">4</CornerRadius>
+    <CornerRadius x:Key="CornerRadiusM">8</CornerRadius>
+    <CornerRadius x:Key="CornerRadiusL">12</CornerRadius>
+    <CornerRadius x:Key="CornerRadiusXL">16</CornerRadius>
+    
+    <!-- ANIMATIONS -->
+    <Duration x:Key="AnimationDurationFast">0:0:0.15</Duration>
+    <Duration x:Key="AnimationDurationNormal">0:0:0.2</Duration>
+    <Duration x:Key="AnimationDurationSlow">0:0:0.3</Duration>
+    
+    <!-- LEGACY COMPATIBILITY (for existing code) -->
+    <SolidColorBrush x:Key="PrimaryBackgroundBrush" Color="{DynamicResource BackgroundPrimary}"/>
+    <SolidColorBrush x:Key="SecondaryBackgroundBrush" Color="{DynamicResource BackgroundSecondary}"/>
+    <SolidColorBrush x:Key="SidebarBackgroundBrush" Color="{DynamicResource BackgroundTertiary}"/>
+    <FontFamily x:Key="PrimaryFontFamily">Segoe UI</FontFamily>
+    
+</ResourceDictionary>

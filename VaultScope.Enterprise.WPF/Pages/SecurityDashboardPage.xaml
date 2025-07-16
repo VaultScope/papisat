@@ -1,0 +1,197 @@
+<UserControl x:Class="VaultScope.Enterprise.WPF.Pages.SecurityDashboardPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:uc="clr-namespace:VaultScope.Enterprise.WPF.UserControls"
+             mc:Ignorable="d"
+             d:DesignHeight="600" d:DesignWidth="1000">
+    
+    <StackPanel>
+        
+        <!-- PAGE HEADER -->
+        <uc:PageHeader Title="Security Dashboard"
+                       Subtitle="Monitor your security posture and view recent scan results"
+                       Breadcrumb="Security Dashboard"
+                       PrimaryActionText="Start New Scan"
+                       SecondaryActionText="Refresh"
+                       ShowPrimaryAction="True"
+                       ShowSecondaryAction="True"
+                       PrimaryActionClicked="StartNewScan_Click"
+                       SecondaryActionClicked="RefreshDashboard_Click"/>
+        
+        <!-- DASHBOARD CONTENT -->
+        <Grid>
+            
+            <!-- STATISTICS GRID (4 EQUAL COLUMNS) -->
+            <Grid x:Name="StatisticsGrid"
+                  Margin="0,0,0,32">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="16"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="16"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="16"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                
+                <!-- TOTAL SCANS CARD -->
+                <uc:StatisticsCard Grid.Column="0"
+                                   Icon="&#xE9F9;"
+                                   Title="Total Scans"
+                                   Value="0"
+                                   Description="security scans"
+                                   IconColor="{DynamicResource InfoBlueBrush}"/>
+                
+                <!-- VULNERABILITIES CARD -->
+                <uc:StatisticsCard Grid.Column="2"
+                                   Icon="&#xE7BA;"
+                                   Title="Vulnerabilities"
+                                   Value="0"
+                                   Description="critical issues found"
+                                   IconColor="{DynamicResource DangerRedBrush}"/>
+                
+                <!-- SECURITY SCORE CARD -->
+                <uc:StatisticsCard Grid.Column="4"
+                                   Icon="&#xE946;"
+                                   Title="Security Score"
+                                   Value="0.0"
+                                   Description="out of 100 security score"
+                                   IconColor="{DynamicResource SuccessGreenBrush}"/>
+                
+                <!-- LAST SCAN CARD -->
+                <uc:StatisticsCard Grid.Column="6"
+                                   Icon="&#xE73E;"
+                                   Title="Last Scan"
+                                   Value="Never"
+                                   Description="no scans completed"
+                                   IconColor="{DynamicResource TextTertiaryBrush}"/>
+                
+            </Grid>
+            
+            <!-- EMPTY STATE -->
+            <Border x:Name="EmptyState"
+                    Background="{DynamicResource CardBackgroundBrush}"
+                    CornerRadius="8"
+                    Effect="{DynamicResource CardShadowEffect}"
+                    Padding="48"
+                    Margin="0,32,0,0">
+                
+                <StackPanel HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            MaxWidth="600">
+                    
+                    <!-- EMPTY STATE ICON -->
+                    <Border Width="80" Height="80"
+                            Background="{DynamicResource SecondaryBackgroundBrush}"
+                            CornerRadius="40"
+                            Margin="0,0,0,24">
+                        <TextBlock Text="&#xE946;"
+                                   FontFamily="Segoe MDL2 Assets"
+                                   FontSize="32"
+                                   Foreground="{DynamicResource PurplePrimaryBrush}"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"/>
+                    </Border>
+                    
+                    <!-- EMPTY STATE TITLE -->
+                    <TextBlock Text="Welcome to VaultScope Enterprise"
+                               FontFamily="{DynamicResource PrimaryFontFamily}"
+                               FontSize="24"
+                               FontWeight="SemiBold"
+                               Foreground="{DynamicResource TextPrimaryBrush}"
+                               HorizontalAlignment="Center"
+                               Margin="0,0,0,8"/>
+                    
+                    <!-- EMPTY STATE DESCRIPTION -->
+                    <TextBlock Text="Start your first security scan to begin monitoring your web application's security posture. Our comprehensive scanning engine will analyze your application for vulnerabilities and provide detailed reports."
+                               FontFamily="{DynamicResource PrimaryFontFamily}"
+                               FontSize="14"
+                               FontWeight="Normal"
+                               Foreground="{DynamicResource TextSecondaryBrush}"
+                               HorizontalAlignment="Center"
+                               TextAlignment="Center"
+                               TextWrapping="Wrap"
+                               LineHeight="20"
+                               Margin="0,0,0,32"/>
+                    
+                    <!-- EMPTY STATE ACTIONS -->
+                    <StackPanel Orientation="Horizontal"
+                                HorizontalAlignment="Center">
+                        <Button Content="Start Security Scan"
+                                Style="{DynamicResource PrimaryActionButtonStyle}"
+                                Margin="0,0,16,0"
+                                Click="StartSecurityScan_Click"/>
+                        <Button Content="View Documentation"
+                                Style="{DynamicResource SecondaryActionButtonStyle}"
+                                Click="ViewDocumentation_Click"/>
+                    </StackPanel>
+                    
+                </StackPanel>
+                
+            </Border>
+            
+            <!-- RECENT SCANS SECTION (Initially Hidden) -->
+            <Grid x:Name="RecentScansSection"
+                  Visibility="Collapsed"
+                  Margin="0,32,0,0">
+                
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                
+                <!-- SECTION HEADER -->
+                <Grid Grid.Row="0"
+                      Margin="0,0,0,16">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <StackPanel Grid.Column="0">
+                        <TextBlock Text="Recent Scans"
+                                   FontFamily="{DynamicResource PrimaryFontFamily}"
+                                   FontSize="20"
+                                   FontWeight="SemiBold"
+                                   Foreground="{DynamicResource TextPrimaryBrush}"
+                                   Margin="0,0,0,4"/>
+                        <TextBlock Text="View your latest security scan results and findings"
+                                   FontFamily="{DynamicResource PrimaryFontFamily}"
+                                   FontSize="14"
+                                   FontWeight="Normal"
+                                   Foreground="{DynamicResource TextSecondaryBrush}"/>
+                    </StackPanel>
+                    
+                    <Button Grid.Column="1"
+                            Content="View All Scans"
+                            Style="{DynamicResource SecondaryActionButtonStyle}"
+                            Click="ViewAllScans_Click"/>
+                </Grid>
+                
+                <!-- SCANS LIST -->
+                <Border Grid.Row="1"
+                        Background="{DynamicResource CardBackgroundBrush}"
+                        CornerRadius="8"
+                        Effect="{DynamicResource CardShadowEffect}">
+                    
+                    <ListView x:Name="RecentScansList"
+                              Background="Transparent"
+                              BorderThickness="0"
+                              ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                              ScrollViewer.VerticalScrollBarVisibility="Auto">
+                        
+                        <!-- ListView items would be populated dynamically -->
+                        
+                    </ListView>
+                    
+                </Border>
+                
+            </Grid>
+            
+        </Grid>
+        
+    </StackPanel>
+    
+</UserControl>
